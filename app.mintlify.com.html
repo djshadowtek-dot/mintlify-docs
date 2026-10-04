@@ -22,7 +22,6 @@
         --neon-cyan: #00f0ff;
         --neon-green: #00ff7f;
         --accent-google: #4285f4;
-        --accent-gemini: #9c27b0;
         --text-primary: #e8f4f8;
         --text-secondary: #a8d8ff;
         --text-muted: #5a7a9a;
@@ -32,9 +31,7 @@
         --shadow-deep: 0 40px 120px rgba(0, 0, 0, 0.8);
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
 
       html, body {
         margin: 0;
@@ -58,7 +55,6 @@
         position: relative;
       }
 
-      /* Animated background grid */
       body::before {
         content: '';
         position: fixed;
@@ -106,8 +102,7 @@
         right: -60px;
         width: 200px;
         height: 200px;
-        background: 
-          radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.12), transparent 70%);
+        background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.12), transparent 70%);
         border-radius: 50%;
         filter: blur(40px);
         pointer-events: none;
@@ -126,14 +121,8 @@
       }
 
       @keyframes cardEntry {
-        from {
-          opacity: 0;
-          transform: translateY(40px) scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
+        from { opacity: 0; transform: translateY(40px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
       }
 
       .card-glow {
@@ -270,13 +259,8 @@
         box-shadow: 0 0 12px var(--neon-green);
       }
 
-      .restoration-alert .text {
-        line-height: 1.5;
-      }
-
-      .restoration-alert strong {
-        color: var(--neon-green);
-      }
+      .restoration-alert .text { line-height: 1.5; }
+      .restoration-alert strong { color: var(--neon-green); }
 
       .content-panel {
         padding: 28px 22px 24px;
@@ -339,22 +323,14 @@
         transition: left 0.6s ease;
       }
 
-      .auth-btn:hover::before {
-        left: 100%;
-      }
-
+      .auth-btn:hover::before { left: 100%; }
       .auth-btn:hover {
         border-color: var(--neon-cyan);
         background: rgba(0, 217, 255, 0.08);
         box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
         transform: translateY(-2px);
       }
-
-      .auth-btn:focus-visible {
-        outline: 2px solid var(--neon-cyan);
-        outline-offset: 2px;
-      }
-
+      .auth-btn:focus-visible { outline: 2px solid var(--neon-cyan); outline-offset: 2px; }
       .auth-btn svg {
         width: 20px;
         height: 20px;
@@ -362,38 +338,12 @@
         filter: drop-shadow(0 0 8px currentColor);
       }
 
-      .google-btn {
-        color: var(--accent-google);
-        border-color: rgba(66, 133, 244, 0.5);
-      }
-
-      .google-btn:hover {
-        border-color: var(--accent-google);
-        background: rgba(66, 133, 244, 0.1);
-        box-shadow: 0 0 20px rgba(66, 133, 244, 0.3);
-      }
-
-      .gemini-btn {
-        color: var(--neon-purple);
-        border-color: rgba(214, 42, 255, 0.5);
-      }
-
-      .gemini-btn:hover {
-        border-color: var(--neon-purple);
-        background: rgba(214, 42, 255, 0.1);
-        box-shadow: 0 0 20px rgba(214, 42, 255, 0.3);
-      }
-
-      .deepmind-btn {
-        color: var(--neon-green);
-        border-color: rgba(0, 255, 127, 0.4);
-      }
-
-      .deepmind-btn:hover {
-        border-color: var(--neon-green);
-        background: rgba(0, 255, 127, 0.08);
-        box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
-      }
+      .google-btn { color: var(--accent-google); border-color: rgba(66, 133, 244, 0.5); }
+      .google-btn:hover { border-color: var(--accent-google); background: rgba(66, 133, 244, 0.1); box-shadow: 0 0 20px rgba(66, 133, 244, 0.3); }
+      .gemini-btn { color: var(--neon-purple); border-color: rgba(214, 42, 255, 0.5); }
+      .gemini-btn:hover { border-color: var(--neon-purple); background: rgba(214, 42, 255, 0.1); box-shadow: 0 0 20px rgba(214, 42, 255, 0.3); }
+      .deepmind-btn { color: var(--neon-green); border-color: rgba(0, 255, 127, 0.4); }
+      .deepmind-btn:hover { border-color: var(--neon-green); background: rgba(0, 255, 127, 0.08); box-shadow: 0 0 20px rgba(0, 255, 127, 0.3); }
 
       .divider {
         display: flex;
@@ -418,22 +368,10 @@
         text-transform: uppercase;
       }
 
-      form {
-        display: grid;
-        gap: 16px;
-      }
+      form { display: grid; gap: 16px; }
 
-      .form-field {
-        display: grid;
-        gap: 10px;
-      }
-
-      .form-field label {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        letter-spacing: 0.03em;
-      }
+      .form-field { display: grid; gap: 10px; }
+      .form-field label { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.03em; }
 
       .field-top {
         display: flex;
@@ -448,10 +386,7 @@
         text-decoration: none;
         font-weight: 500;
       }
-
-      .field-top a:hover {
-        text-decoration: underline;
-      }
+      .field-top a:hover { text-decoration: underline; }
 
       input[type="email"],
       input[type="password"] {
@@ -468,26 +403,16 @@
         z-index: 1;
       }
 
-      input::placeholder {
-        color: var(--text-muted);
-      }
-
+      input::placeholder { color: var(--text-muted); }
       input:focus {
         border-color: var(--neon-cyan);
         background: rgba(0, 217, 255, 0.05);
         box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.12), var(--glow-blue);
         outline: none;
       }
+      input:focus-visible { outline: 2px solid var(--neon-cyan); outline-offset: 2px; }
 
-      input:focus-visible {
-        outline: 2px solid var(--neon-cyan);
-        outline-offset: 2px;
-      }
-
-      .password-container {
-        position: relative;
-      }
-
+      .password-container { position: relative; }
       .password-toggle {
         position: absolute;
         right: 14px;
@@ -502,25 +427,41 @@
         font-size: 1.1rem;
         transition: color 0.2s ease;
       }
+      .password-toggle:hover { color: var(--neon-cyan); }
 
-      .password-toggle:hover {
+      .input-hint, .input-error {
+        font-size: 0.73rem;
+        min-height: 16px;
+      }
+      .input-hint { color: var(--text-muted); }
+      .input-error { color: #ff6b9d; }
+
+      .email-preview {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        align-self: flex-start;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 217, 255, 0.2);
+        background: rgba(0, 217, 255, 0.06);
         color: var(--neon-cyan);
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        overflow: hidden;
+        max-width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
-      input[type="password"] ~ .password-toggle {
-        font-size: 1rem;
-      }
-
-      .input-hint {
-        font-size: 0.73rem;
-        color: var(--text-muted);
-        min-height: 16px;
-      }
-
-      .input-error {
-        font-size: 0.73rem;
-        color: #ff6b9d;
-        min-height: 16px;
+      .email-preview .icon-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--neon-green);
+        box-shadow: 0 0 10px var(--neon-green);
+        display: inline-block;
+        flex-shrink: 0;
       }
 
       .checkbox-group {
@@ -529,21 +470,8 @@
         gap: 10px;
         margin: 4px 0;
       }
-
-      .checkbox-group input {
-        width: 18px;
-        height: 18px;
-        cursor: pointer;
-        accent-color: var(--neon-cyan);
-        border-radius: 4px;
-      }
-
-      .checkbox-group label {
-        margin: 0;
-        color: var(--text-secondary);
-        font-size: 0.82rem;
-        cursor: pointer;
-      }
+      .checkbox-group input { width: 18px; height: 18px; cursor: pointer; accent-color: var(--neon-cyan); border-radius: 4px; }
+      .checkbox-group label { margin: 0; color: var(--text-secondary); font-size: 0.82rem; cursor: pointer; }
 
       .submit-btn {
         appearance: none;
@@ -563,7 +491,6 @@
         overflow: hidden;
         box-shadow: 0 0 30px rgba(0, 217, 255, 0.4), 0 0 60px rgba(214, 42, 255, 0.2);
       }
-
       .submit-btn::before {
         content: '';
         position: absolute;
@@ -571,28 +498,16 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         transition: left 0.6s ease;
       }
-
-      .submit-btn:hover:not(:disabled)::before {
-        left: 100%;
-      }
-
+      .submit-btn:hover:not(:disabled)::before { left: 100%; }
       .submit-btn:hover:not(:disabled) {
         transform: translateY(-3px);
         box-shadow: 0 0 40px rgba(0, 217, 255, 0.5), 0 0 80px rgba(214, 42, 255, 0.3);
       }
-
-      .submit-btn:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
-
-      .submit-btn:focus-visible {
-        outline: 2px solid var(--neon-cyan);
-        outline-offset: 2px;
-      }
+      .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+      .submit-btn:focus-visible { outline: 2px solid var(--neon-cyan); outline-offset: 2px; }
 
       .footer-content {
         padding: 0 22px 24px;
@@ -608,15 +523,8 @@
         line-height: 1.6;
       }
 
-      .legal-text a {
-        color: var(--neon-cyan);
-        text-decoration: none;
-        font-weight: 600;
-      }
-
-      .legal-text a:hover {
-        text-decoration: underline;
-      }
+      .legal-text a { color: var(--neon-cyan); text-decoration: none; font-weight: 600; }
+      .legal-text a:hover { text-decoration: underline; }
 
       .signup-section {
         text-align: center;
@@ -624,51 +532,19 @@
         color: var(--text-secondary);
         font-size: 0.85rem;
       }
-
-      .signup-section a {
-        color: var(--neon-cyan);
-        text-decoration: none;
-        font-weight: 700;
-      }
-
-      .signup-section a:hover {
-        text-decoration: underline;
-      }
+      .signup-section a { color: var(--neon-cyan); text-decoration: none; font-weight: 700; }
+      .signup-section a:hover { text-decoration: underline; }
 
       @media (max-width: 480px) {
-        .auth-card {
-          border-radius: 20px;
-        }
-
-        .brand-header,
-        .content-panel,
-        .footer-content,
-        .signup-section {
-          padding-left: 18px;
-          padding-right: 18px;
-        }
-
-        h1 {
-          font-size: 1.8rem;
-        }
-
-        .logo-orb {
-          width: 60px;
-          height: 60px;
-        }
-
-        .logo-orb svg {
-          width: 32px;
-          height: 32px;
-        }
+        .auth-card { border-radius: 20px; }
+        .brand-header, .content-panel, .footer-content, .signup-section { padding-left: 18px; padding-right: 18px; }
+        h1 { font-size: 1.8rem; }
+        .logo-orb { width: 60px; height: 60px; }
+        .logo-orb svg { width: 32px; height: 32px; }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        * {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
+        * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
       }
     </style>
   </head>
@@ -687,9 +563,7 @@
           </div>
           <h1>Mintlify Superintelligence</h1>
           <p class="subtitle">Enterprise Documentation at Light Speed</p>
-          <div class="tech-badge">
-            DeepMind 5.0 × Gemini Ultra
-          </div>
+          <div class="tech-badge">DeepMind 5.0 × Gemini Ultra</div>
         </header>
 
         <div class="restoration-alert">
@@ -728,9 +602,7 @@
             </button>
           </div>
 
-          <div class="divider">
-            <span>or authenticate</span>
-          </div>
+          <div class="divider"><span>or authenticate</span></div>
 
           <form id="loginForm" novalidate>
             <div class="form-field">
@@ -745,6 +617,10 @@
               />
               <div id="emailHint" class="input-hint">Link your Mintlify AI workspace domain.</div>
               <div id="emailError" class="input-error" role="alert" aria-live="polite"></div>
+              <div class="email-preview" id="emailPreview" aria-live="polite">
+                <span class="icon-dot"></span>
+                <span>Awaiting identity signature</span>
+              </div>
             </div>
 
             <div class="form-field">
@@ -802,6 +678,7 @@
       const passwordError = document.getElementById('passwordError');
       const submitBtn = document.getElementById('submitBtn');
       const togglePasswordBtn = document.getElementById('togglePassword');
+      const emailPreview = document.getElementById('emailPreview');
 
       const validateEmail = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
       const validatePassword = (val) => val.length >= 12;
@@ -811,6 +688,15 @@
         input.setAttribute('aria-invalid', msg ? 'true' : 'false');
       };
 
+      const syncEmailPreview = () => {
+        const value = emailInput.value.trim();
+        if (!value) {
+          emailPreview.innerHTML = '<span class="icon-dot"></span><span>Awaiting identity signature</span>';
+          return;
+        }
+        emailPreview.innerHTML = '<span class="icon-dot"></span><span>Identity signature: ' + value + '</span>';
+      };
+
       const updateSubmitState = () => {
         const emailOk = emailInput.value.trim() && validateEmail(emailInput.value);
         const passwordOk = validatePassword(passwordInput.value);
@@ -818,6 +704,7 @@
       };
 
       emailInput.addEventListener('input', () => {
+        syncEmailPreview();
         if (!emailInput.value.trim()) {
           setError(emailInput, emailError, 'Enterprise email required.');
         } else if (!validateEmail(emailInput.value)) {
@@ -855,7 +742,6 @@
 
         if (!emailValid) setError(emailInput, emailError, 'Invalid email format.');
         if (!passwordValid) setError(passwordInput, passwordError, 'Minimum 12 characters required.');
-
         if (!emailValid || !passwordValid) return;
 
         submitBtn.disabled = true;
@@ -871,6 +757,7 @@
         }
       });
 
+      syncEmailPreview();
       updateSubmitState();
     </script>
   </body>
