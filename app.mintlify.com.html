@@ -5,529 +5,793 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Sign in to Mintlify Docs using Google or Gemini-powered authentication."
+      content="Mintlify Docs | 2030 Superintelligence Platform. Powered by Google DeepMind 5.0 & Gemini Ultra. Enterprise AI Documentation at Light Speed."
     />
-    <title>Mintlify Docs | Sign in</title>
+    <title>Mintlify 2030 | DeepMind Superintelligence Platform</title>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
       :root {
-        --bg: #0b1220;
-        --panel: rgba(15, 23, 42, 0.88);
-        --panel-strong: rgba(15, 23, 42, 0.96);
-        --panel-soft: rgba(31, 41, 55, 0.8);
-        --text: #e5eefb;
-        --muted: #a4b0c7;
-        --line: rgba(148, 163, 184, 0.2);
-        --blue: #4f8cff;
-        --blue-strong: #2b6dfc;
-        --green: #22c55e;
-        --green-soft: rgba(34, 197, 94, 0.14);
-        --google: #ea4335;
-        --gemini: #8b5cf6;
-        --shadow: 0 30px 80px rgba(2, 6, 23, 0.5);
+        --dark: #0a0e1a;
+        --darker: #05070f;
+        --ultra-dark: #02030a;
+        --glass: rgba(20, 28, 48, 0.72);
+        --glass-strong: rgba(15, 22, 42, 0.92);
+        --neon-blue: #00d9ff;
+        --neon-purple: #d62aff;
+        --neon-cyan: #00f0ff;
+        --neon-green: #00ff7f;
+        --accent-google: #4285f4;
+        --accent-gemini: #9c27b0;
+        --text-primary: #e8f4f8;
+        --text-secondary: #a8d8ff;
+        --text-muted: #5a7a9a;
+        --line-accent: rgba(0, 217, 255, 0.3);
+        --glow-blue: 0 0 30px rgba(0, 217, 255, 0.25), 0 0 60px rgba(0, 217, 255, 0.1);
+        --glow-purple: 0 0 25px rgba(214, 42, 255, 0.2), 0 0 50px rgba(214, 42, 255, 0.08);
+        --shadow-deep: 0 40px 120px rgba(0, 0, 0, 0.8);
       }
 
-      * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
 
       html, body {
         margin: 0;
         min-height: 100%;
-        font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
         background:
-          radial-gradient(circle at top left, rgba(79, 140, 255, 0.22), transparent 32%),
-          radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.18), transparent 35%),
-          linear-gradient(160deg, #020817 0%, #0b1220 48%, #111827 100%);
-        color: var(--text);
+          radial-gradient(ellipse 120% 140% at 15% 35%, rgba(66, 133, 244, 0.15), transparent 50%),
+          radial-gradient(ellipse 140% 120% at 85% 25%, rgba(214, 42, 255, 0.12), transparent 50%),
+          radial-gradient(ellipse 100% 110% at 50% 95%, rgba(0, 217, 255, 0.08), transparent 60%),
+          linear-gradient(135deg, #0a0e1a 0%, #05070f 40%, #0a0f1f 100%);
+        background-attachment: fixed;
+        color: var(--text-primary);
+        overflow-x: hidden;
       }
 
       body {
         min-height: 100vh;
         display: grid;
         place-items: center;
-        padding: 32px 18px;
+        padding: 40px 20px;
+        position: relative;
       }
 
-      .auth-shell {
-        width: min(100%, 440px);
+      /* Animated background grid */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          linear-gradient(rgba(0, 217, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 217, 255, 0.08) 1px, transparent 1px);
+        background-size: 80px 80px;
+        pointer-events: none;
+        z-index: 0;
+        animation: gridDrift 40s linear infinite;
+      }
+
+      @keyframes gridDrift {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(80px, 80px); }
+      }
+
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.05), transparent 30%),
+          radial-gradient(circle at 80% 20%, rgba(214, 42, 255, 0.05), transparent 30%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .auth-container {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 520px);
+      }
+
+      .neural-grid {
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 200px;
+        height: 200px;
+        background: 
+          radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.12), transparent 70%);
+        border-radius: 50%;
+        filter: blur(40px);
+        pointer-events: none;
       }
 
       .auth-card {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 22px;
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        position: relative;
+        background: var(--glass-strong);
+        border: 1px solid var(--line-accent);
+        border-radius: 24px;
+        box-shadow: var(--shadow-deep), var(--glow-blue);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         overflow: hidden;
+        animation: cardEntry 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
 
-      .brand-row {
-        padding: 26px 26px 12px;
+      @keyframes cardEntry {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
       }
 
-      .brand-wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      .card-glow {
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(0, 217, 255, 0.15), transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .brand-header {
+        position: relative;
+        padding: 48px 28px 32px;
         text-align: center;
-        gap: 12px;
+        border-bottom: 1px solid var(--line-accent);
       }
 
-      .logo-mark {
-        width: 54px;
-        height: 54px;
-        display: inline-flex;
+      .logo-orb {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 20px;
+        position: relative;
+        display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 14px;
-        background: linear-gradient(135deg, rgba(79, 140, 255, 0.15), rgba(139, 92, 246, 0.12));
-        border: 1px solid rgba(79, 140, 255, 0.2);
-        color: #dfe9ff;
       }
 
-      .logo-mark svg {
-        width: 30px;
-        height: 30px;
+      .logo-orb::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(66, 133, 244, 0.3), rgba(214, 42, 255, 0.2));
+        border: 2px solid var(--neon-blue);
+        box-shadow: var(--glow-blue), inset 0 0 30px rgba(0, 217, 255, 0.2);
+        animation: orbRotate 8s linear infinite;
+      }
+
+      @keyframes orbRotate {
+        from { transform: rotateZ(0deg); }
+        to { transform: rotateZ(360deg); }
+      }
+
+      .logo-orb svg {
+        position: relative;
+        z-index: 2;
+        width: 40px;
+        height: 40px;
+        fill: var(--neon-cyan);
+        filter: drop-shadow(0 0 12px rgba(0, 217, 255, 0.6));
       }
 
       h1 {
-        margin: 0;
-        font-size: clamp(1.8rem, 2vw, 2.2rem);
-        letter-spacing: -0.04em;
+        margin: 0 0 12px;
+        font-size: clamp(1.95rem, 3vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: -0.035em;
         line-height: 1.1;
+        background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-blue) 50%, var(--neon-purple) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .subtitle {
-        margin: 0;
-        color: var(--muted);
+        margin: 0 0 20px;
         font-size: 0.95rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+        letter-spacing: 0.02em;
       }
 
-      .brand-line {
+      .tech-badge {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 7px 10px;
+        padding: 10px 16px;
+        background: linear-gradient(135deg, rgba(66, 133, 244, 0.15), rgba(214, 42, 255, 0.1));
+        border: 1px solid var(--line-accent);
         border-radius: 999px;
-        background: rgba(148, 163, 184, 0.08);
-        border: 1px solid rgba(148, 163, 184, 0.12);
-        color: var(--muted);
-        font-size: 0.74rem;
-      }
-
-      .brand-line .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        display: inline-block;
-      }
-
-      .brand-line .google { background: var(--google); }
-      .brand-line .gemini { background: var(--gemini); }
-
-      .restore-banner {
-        margin: 6px 22px 0;
-        background: var(--green-soft);
-        border: 1px solid rgba(34, 197, 94, 0.35);
-        color: #dffce9;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 12px 14px;
-        text-align: center;
-        font-size: 0.78rem;
-      }
-
-      .restore-banner .check {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: var(--green);
-        color: #06240f;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
         font-size: 0.72rem;
-        font-weight: 700;
-      }
-
-      .panel {
-        padding: 22px 22px 18px;
-      }
-
-      .panel-header {
-        margin: 0 0 16px;
-        color: #c9d4ea;
-        font-size: 0.8rem;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
+        color: var(--neon-cyan);
+        box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
+      }
+
+      .tech-badge::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background: var(--neon-green);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--neon-green);
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+
+      .restoration-alert {
+        margin: 16px 22px 0;
+        padding: 14px 18px;
+        background: linear-gradient(135deg, rgba(0, 255, 127, 0.12), rgba(0, 217, 255, 0.08));
+        border: 1.5px solid rgba(0, 255, 127, 0.4);
+        border-radius: 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 0.8rem;
+        color: var(--neon-cyan);
+        box-shadow: 0 0 20px rgba(0, 255, 127, 0.15);
+      }
+
+      .restoration-alert .icon {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        background: var(--neon-green);
+        border-radius: 50%;
         display: flex;
         align-items: center;
-        gap: 10px;
+        justify-content: center;
+        color: var(--ultra-dark);
+        font-weight: 700;
+        font-size: 0.65rem;
+        box-shadow: 0 0 12px var(--neon-green);
       }
 
-      .panel-header::after {
-        content: "";
-        display: block;
-        flex: 1;
-        height: 1px;
-        background: var(--line);
+      .restoration-alert .text {
+        line-height: 1.5;
       }
 
-      .button-stack {
-        display: grid;
+      .restoration-alert strong {
+        color: var(--neon-green);
+      }
+
+      .content-panel {
+        padding: 28px 22px 24px;
+        position: relative;
+      }
+
+      .panel-label {
+        margin: 0 0 18px;
+        color: var(--neon-cyan);
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
         gap: 12px;
       }
 
-      .button {
+      .panel-label::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, var(--line-accent), transparent);
+      }
+
+      .auth-buttons {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+
+      .auth-btn {
         appearance: none;
-        border: 1px solid var(--line);
-        background: rgba(148, 163, 184, 0.04);
-        color: var(--text);
-        border-radius: 12px;
-        padding: 13px 14px;
+        border: 1.5px solid var(--line-accent);
+        background: rgba(20, 28, 48, 0.6);
+        color: var(--text-primary);
+        border-radius: 14px;
+        padding: 15px 16px;
         font: inherit;
         font-weight: 600;
+        font-size: 0.92rem;
         cursor: pointer;
-        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 12px;
+        position: relative;
+        overflow: hidden;
       }
 
-      .button:hover {
-        transform: translateY(-1px);
-        border-color: rgba(148, 163, 184, 0.45);
+      .auth-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.2), transparent);
+        transition: left 0.6s ease;
       }
 
-      .button:focus-visible,
-      input:focus-visible,
-      a:focus-visible,
-      button:focus-visible {
-        outline: 2px solid rgba(79, 140, 255, 0.9);
+      .auth-btn:hover::before {
+        left: 100%;
+      }
+
+      .auth-btn:hover {
+        border-color: var(--neon-cyan);
+        background: rgba(0, 217, 255, 0.08);
+        box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .auth-btn:focus-visible {
+        outline: 2px solid var(--neon-cyan);
         outline-offset: 2px;
       }
 
-      .button svg {
-        width: 18px;
-        height: 18px;
+      .auth-btn svg {
+        width: 20px;
+        height: 20px;
         flex-shrink: 0;
+        filter: drop-shadow(0 0 8px currentColor);
       }
 
       .google-btn {
-        border-color: rgba(234, 67, 53, 0.4);
+        color: var(--accent-google);
+        border-color: rgba(66, 133, 244, 0.5);
       }
 
       .google-btn:hover {
-        background: rgba(234, 67, 53, 0.08);
+        border-color: var(--accent-google);
+        background: rgba(66, 133, 244, 0.1);
+        box-shadow: 0 0 20px rgba(66, 133, 244, 0.3);
       }
 
       .gemini-btn {
-        border-color: rgba(139, 92, 246, 0.42);
+        color: var(--neon-purple);
+        border-color: rgba(214, 42, 255, 0.5);
       }
 
       .gemini-btn:hover {
-        background: rgba(139, 92, 246, 0.08);
+        border-color: var(--neon-purple);
+        background: rgba(214, 42, 255, 0.1);
+        box-shadow: 0 0 20px rgba(214, 42, 255, 0.3);
       }
 
-      .primary-btn {
-        width: 100%;
-        margin-top: 8px;
-        background: linear-gradient(135deg, var(--blue), var(--blue-strong));
-        border-color: rgba(79, 140, 255, 0.7);
-        color: white;
+      .deepmind-btn {
+        color: var(--neon-green);
+        border-color: rgba(0, 255, 127, 0.4);
       }
 
-      .primary-btn:hover {
-        background: linear-gradient(135deg, #3e7df8, #2358d4);
+      .deepmind-btn:hover {
+        border-color: var(--neon-green);
+        background: rgba(0, 255, 127, 0.08);
+        box-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
       }
 
       .divider {
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin: 18px 0 14px;
+        gap: 14px;
+        margin: 22px 0 20px;
+        opacity: 0.7;
       }
 
       .divider::before,
       .divider::after {
-        content: "";
-        display: block;
+        content: '';
         flex: 1;
         height: 1px;
-        background: var(--line);
+        background: var(--line-accent);
       }
 
       .divider span {
-        color: var(--muted);
-        font-size: 0.76rem;
-        letter-spacing: 0.08em;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
       }
 
       form {
         display: grid;
-        gap: 14px;
+        gap: 16px;
       }
 
-      .field {
+      .form-field {
         display: grid;
-        gap: 8px;
-      }
-
-      .field label {
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: #dfe8fa;
-      }
-
-      .field-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         gap: 10px;
       }
 
-      .field-header a {
-        color: #8db2ff;
-        text-decoration: none;
-        font-size: 0.77rem;
+      .form-field label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        letter-spacing: 0.03em;
       }
 
-      .field-header a:hover {
+      .field-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .field-top a {
+        color: var(--neon-cyan);
+        font-size: 0.76rem;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .field-top a:hover {
         text-decoration: underline;
       }
 
       input[type="email"],
       input[type="password"] {
         width: 100%;
-        padding: 12px 14px;
-        border-radius: 12px;
-        border: 1px solid var(--line);
-        background: rgba(15, 23, 42, 0.72);
-        color: var(--text);
+        padding: 13px 16px;
+        border-radius: 14px;
+        border: 1.5px solid var(--line-accent);
+        background: rgba(15, 22, 42, 0.8);
+        color: var(--text-primary);
         font: inherit;
+        font-size: 0.9rem;
+        transition: all 0.25s ease;
+        position: relative;
+        z-index: 1;
       }
 
       input::placeholder {
-        color: #7e8aa6;
+        color: var(--text-muted);
       }
 
       input:focus {
-        border-color: rgba(79, 140, 255, 0.9);
-        box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.15);
+        border-color: var(--neon-cyan);
+        background: rgba(0, 217, 255, 0.05);
+        box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.12), var(--glow-blue);
         outline: none;
       }
 
-      .password-wrap {
+      input:focus-visible {
+        outline: 2px solid var(--neon-cyan);
+        outline-offset: 2px;
+      }
+
+      .password-container {
         position: relative;
       }
 
-      .password-wrap button {
+      .password-toggle {
         position: absolute;
-        right: 10px;
+        right: 14px;
         top: 50%;
         transform: translateY(-50%);
-        border: 0;
         background: transparent;
-        color: var(--muted);
+        border: 0;
+        color: var(--text-muted);
         cursor: pointer;
         padding: 6px;
         border-radius: 8px;
+        font-size: 1.1rem;
+        transition: color 0.2s ease;
       }
 
-      .password-wrap input {
-        padding-right: 42px;
+      .password-toggle:hover {
+        color: var(--neon-cyan);
       }
 
-      .hint,
-      .error {
-        min-height: 18px;
-        font-size: 0.74rem;
-        line-height: 1.4;
+      input[type="password"] ~ .password-toggle {
+        font-size: 1rem;
       }
 
-      .hint {
-        color: var(--muted);
+      .input-hint {
+        font-size: 0.73rem;
+        color: var(--text-muted);
+        min-height: 16px;
       }
 
-      .error {
-        color: #ff8c8c;
+      .input-error {
+        font-size: 0.73rem;
+        color: #ff6b9d;
+        min-height: 16px;
       }
 
-      .remember {
-        display: inline-flex;
+      .checkbox-group {
+        display: flex;
         align-items: center;
         gap: 10px;
-        color: var(--muted);
-        font-size: 0.8rem;
+        margin: 4px 0;
       }
 
-      .remember input {
-        width: 16px;
-        height: 16px;
-        accent-color: var(--blue);
+      .checkbox-group input {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        accent-color: var(--neon-cyan);
+        border-radius: 4px;
       }
 
-      .legal {
-        padding: 0 22px 20px;
-        border-top: 1px solid var(--line);
+      .checkbox-group label {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 0.82rem;
+        cursor: pointer;
+      }
+
+      .submit-btn {
+        appearance: none;
+        width: 100%;
+        margin-top: 16px;
+        padding: 15px 16px;
+        border: none;
+        background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--accent-google) 50%, var(--neon-purple) 100%);
+        color: var(--ultra-dark);
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        letter-spacing: 0.02em;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(0, 217, 255, 0.4), 0 0 60px rgba(214, 42, 255, 0.2);
+      }
+
+      .submit-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .submit-btn:hover:not(:disabled)::before {
+        left: 100%;
+      }
+
+      .submit-btn:hover:not(:disabled) {
+        transform: translateY(-3px);
+        box-shadow: 0 0 40px rgba(0, 217, 255, 0.5), 0 0 80px rgba(214, 42, 255, 0.3);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .submit-btn:focus-visible {
+        outline: 2px solid var(--neon-cyan);
+        outline-offset: 2px;
+      }
+
+      .footer-content {
+        padding: 0 22px 24px;
+        border-top: 1px solid var(--line-accent);
         margin-top: 8px;
       }
 
-      .legal p {
-        margin: 14px 0 0;
-        color: var(--muted);
+      .legal-text {
+        margin: 18px 0 0;
+        color: var(--text-muted);
         text-align: center;
-        font-size: 0.72rem;
+        font-size: 0.71rem;
         line-height: 1.6;
       }
 
-      .legal a {
-        color: #93b9ff;
+      .legal-text a {
+        color: var(--neon-cyan);
         text-decoration: none;
+        font-weight: 600;
       }
 
-      .legal a:hover {
+      .legal-text a:hover {
         text-decoration: underline;
       }
 
-      .signup {
+      .signup-section {
         text-align: center;
-        padding: 0 22px 24px;
-        color: var(--muted);
-        font-size: 0.82rem;
+        padding: 0 22px 28px;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
       }
 
-      .signup a {
-        color: #a9c5ff;
+      .signup-section a {
+        color: var(--neon-cyan);
         text-decoration: none;
         font-weight: 700;
       }
 
-      .signup a:hover {
+      .signup-section a:hover {
         text-decoration: underline;
       }
 
-      @media (max-width: 460px) {
+      @media (max-width: 480px) {
         .auth-card {
-          border-radius: 18px;
+          border-radius: 20px;
         }
 
-        .brand-row,
-        .panel,
-        .legal,
-        .signup {
-          padding-left: 16px;
-          padding-right: 16px;
+        .brand-header,
+        .content-panel,
+        .footer-content,
+        .signup-section {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        .logo-orb {
+          width: 60px;
+          height: 60px;
+        }
+
+        .logo-orb svg {
+          width: 32px;
+          height: 32px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
         }
       }
     </style>
   </head>
   <body>
-    <main class="auth-shell" aria-label="Sign in to Mintlify Docs">
-      <section class="auth-card">
-        <div class="brand-row">
-          <div class="brand-wrap">
-            <div class="logo-mark" aria-label="Mintlify logo">
-              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M62.2 22.8V4.4c0-2.2-1.8-4-4-4H39.2c-3.8 0-7.3.9-10.4 2.5C25.7 5.3 22.1 7.7 19 11.3L18.5 12c-2.7 2.6-5.1 5.6-7 9.2-.7-1.5-1.7-2.8-2.8-3.7C10 15.9 8.5 15 6.8 14.4c-1.6-.7-3.2-1-4.8-1.2-.8-.1-1.7-.2-2.5-.2v13.8c0 2.2 1.8 4 4 4H26.6c2.9 0 5.6-1 7.8-2.7 2.2-1.7 3.9-4.1 5-6.8 1.1-2.8 1.7-5.8 1.7-8.8H62.2z" fill="currentColor"/>
-                <path d="M8.8 62.4c0-1.8 1.5-3.3 3.3-3.3h14.2c3.7 0 7.1-1.2 10.1-3.5 2.9-2.2 5.2-5.1 6.7-8.5 1.7-3.9 2.6-8.2 2.6-12.5V11.8C44.2 8.9 41.3 6 38.4 6H8.8v56.4z" fill="currentColor" opacity="0.9"/>
-              </svg>
-            </div>
-            <h1>Sign in to Mintlify</h1>
-            <p class="subtitle">Access your documentation workspace and AI-powered workflows.</p>
-            <div class="brand-line" aria-label="Google and Gemini powered">
-              <span class="dot google" aria-hidden="true"></span>
-              <span>Google</span>
-              <span aria-hidden="true">+</span>
-              <span class="dot gemini" aria-hidden="true"></span>
-              <span>Gemini</span>
-            </div>
+    <div class="neural-grid"></div>
+
+    <main class="auth-container">
+      <article class="auth-card">
+        <div class="card-glow"></div>
+
+        <header class="brand-header">
+          <div class="logo-orb" aria-label="DeepMind Superintelligence">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 4c-2.2 0-4 1.8-4 4v8c0 2.2 1.8 4 4 4s4-1.8 4-4v-8c0-2.2-1.8-4-4-4zm16 8c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm-32 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm16 20c-6.6 0-12 5.4-12 12v4h24v-4c0-6.6-5.4-12-12-12z"/>
+            </svg>
+          </div>
+          <h1>Mintlify Superintelligence</h1>
+          <p class="subtitle">Enterprise Documentation at Light Speed</p>
+          <div class="tech-badge">
+            DeepMind 5.0 × Gemini Ultra
+          </div>
+        </header>
+
+        <div class="restoration-alert">
+          <div class="icon">✓</div>
+          <div class="text">
+            <strong>Neural State Restored</strong> — Platform synchronized with optimal configuration from 2 days prior. All luxury workspace features live.
           </div>
         </div>
 
-        <div class="restore-banner" aria-live="polite">
-          <span class="check" aria-hidden="true">✓</span>
-          <span>Website restored 2 days ago from the last stable version</span>
-        </div>
+        <section class="content-panel">
+          <h2 class="panel-label">Superintelligent Access</h2>
 
-        <div class="panel">
-          <h2 class="panel-header">Quick access</h2>
-          <div class="button-stack">
-            <button type="button" class="button google-btn" aria-label="Continue with Google">
+          <div class="auth-buttons">
+            <button type="button" class="auth-btn google-btn" aria-label="Continue with Google Workspace">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path fill="#EA4335" d="M12 10.2V14h5.4c-.2 1.2-.9 2.3-1.9 3.1l3.1 2.4A9.5 9.5 0 0 0 21.9 12c0-.8-.1-1.6-.3-2.3H12z"/>
-                <path fill="#34A853" d="M12 21.4c2.6 0 4.8-.9 6.4-2.3l-3.1-2.4c-.8.6-1.9 1-3.3 1-2.5 0-4.6-1.7-5.4-4H.9v2.5A10.4 10.4 0 0 0 12 21.4z"/>
-                <path fill="#FBBC04" d="M6.6 17.7A6.2 6.2 0 0 1 6 14.9V12.4H2.7A10.2 10.2 0 0 0 1.8 15c.9 2.3 2.8 4.3 4.8 5.7l0 0z"/>
-                <path fill="#4285F4" d="M12 4.6c1.4 0 2.7.5 3.7 1.4l2.9-2.8A9.9 9.9 0 0 0 12 1.6 10.4 10.4 0 0 0 2.7 12.4H6a6.1 6.1 0 0 1 6-7.8z"/>
+                <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
               </svg>
-              Continue with Google
+              Google Workspace
             </button>
 
-            <button type="button" class="button gemini-btn" aria-label="Continue with Gemini">
+            <button type="button" class="auth-btn gemini-btn" aria-label="Gemini Ultra Authentication">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path fill="url(#g1)" d="M12 2.5c1.6 0 3 1.3 3 3v1.2c0 1.2-.9 2.2-2.1 2.4l-2.2.4c-2.1.4-3.7 2.1-3.7 4.2V14c0 1.5 1.2 2.7 2.7 2.7h1.3c.8 0 1.5.7 1.5 1.5v.5c0 1.6-1.3 3-3 3s-3-1.4-3-3v-2.1H5.4c-1.7 0-3-1.3-3-3v-1.1A3 3 0 0 1 5.4 9H6c1.7 0 3-1.3 3-3V4.8C9 3.3 10.3 2 12 2.5zm5.7 7.1c1.8 0 3.3 1.5 3.3 3.3v2.1c0 1.8-1.5 3.3-3.3 3.3h-1.1v-1.2c0-.8-.6-1.4-1.4-1.4H12c-1.3 0-2.4-1.1-2.4-2.4v-1.1c0-1.1.9-2 2-2h4.1c.6 0 1.2-.2 1.7-.6l.2-.2v-1.1z"/>
-                <defs>
-                  <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#D5B4FF"/>
-                    <stop offset="100%" stop-color="#8B5CF6"/>
-                  </linearGradient>
-                </defs>
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
               </svg>
-              Continue with Gemini
+              Gemini Ultra Auth
+            </button>
+
+            <button type="button" class="auth-btn deepmind-btn" aria-label="DeepMind Neural Verification">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill="currentColor" d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+              </svg>
+              DeepMind Neural Verify
             </button>
           </div>
 
-          <div class="divider"><span>or</span></div>
+          <div class="divider">
+            <span>or authenticate</span>
+          </div>
 
           <form id="loginForm" novalidate>
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" placeholder="name@company.com" aria-describedby="emailHint emailError" />
-              <div id="emailHint" class="hint">Use the email linked to your workspace.</div>
-              <div id="emailError" class="error" role="alert" aria-live="polite"></div>
+            <div class="form-field">
+              <label for="email">Enterprise Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="executive@company.ai"
+                aria-describedby="emailHint emailError"
+              />
+              <div id="emailHint" class="input-hint">Link your Mintlify AI workspace domain.</div>
+              <div id="emailError" class="input-error" role="alert" aria-live="polite"></div>
             </div>
 
-            <div class="field">
-              <div class="field-header">
-                <label for="password">Password</label>
-                <a href="/forgot-password">Forgot password?</a>
+            <div class="form-field">
+              <div class="field-top">
+                <label for="password">Neural Passphrase</label>
+                <a href="/auth/recovery">Recovery Protocol</a>
               </div>
-              <div class="password-wrap">
-                <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••••••" aria-describedby="passwordHint passwordError" />
-                <button type="button" id="togglePassword" aria-label="Show password">👁</button>
+              <div class="password-container">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  placeholder="••••••••••••••••"
+                  aria-describedby="passwordHint passwordError"
+                />
+                <button type="button" id="togglePassword" class="password-toggle" aria-label="Show passphrase">🔒</button>
               </div>
-              <div id="passwordHint" class="hint">Minimum 8 characters.</div>
-              <div id="passwordError" class="error" role="alert" aria-live="polite"></div>
+              <div id="passwordHint" class="input-hint">Minimum 12 characters. Enterprise-grade encryption.</div>
+              <div id="passwordError" class="input-error" role="alert" aria-live="polite"></div>
             </div>
 
-            <label class="remember" for="rememberMe">
-              <input id="rememberMe" type="checkbox" />
-              Keep me signed in
-            </label>
+            <div class="checkbox-group">
+              <input id="rememberMe" type="checkbox" name="remember" />
+              <label for="rememberMe">Luxury session mode (30 days)</label>
+            </div>
 
-            <button class="button primary-btn" type="submit" id="submitBtn">
-              Sign in
+            <button type="submit" class="submit-btn" id="submitBtn">
+              Initiate Superintelligence Session
             </button>
           </form>
-        </div>
+        </section>
 
-        <div class="legal">
-          <p>
-            By signing in, you agree to our
-            <a href="/terms" target="_blank" rel="noreferrer">Terms</a>
+        <footer class="footer-content">
+          <p class="legal-text">
+            By authenticating, you agree to our
+            <a href="/legal/terms">Enterprise Agreement</a>
             and
-            <a href="/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>.
+            <a href="/legal/privacy">DeepMind Privacy Framework</a>.
           </p>
-        </div>
+        </footer>
 
-        <div class="signup">
-          Need an account? <a href="/signup">Create one</a>
+        <div class="signup-section">
+          Enterprise client?
+          <a href="/workspace/onboard">Luxury Onboarding Portal</a>
         </div>
-      </section>
+      </article>
     </main>
 
     <script>
@@ -537,90 +801,77 @@
       const emailError = document.getElementById('emailError');
       const passwordError = document.getElementById('passwordError');
       const submitBtn = document.getElementById('submitBtn');
-      const togglePasswordButton = document.getElementById('togglePassword');
+      const togglePasswordBtn = document.getElementById('togglePassword');
 
-      function validateEmail(value) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-      }
+      const validateEmail = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+      const validatePassword = (val) => val.length >= 12;
 
-      function validatePassword(value) {
-        return value.length >= 8;
-      }
+      const setError = (input, errorEl, msg) => {
+        errorEl.textContent = msg || '';
+        input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      };
 
-      function setFieldError(fieldEl, errorEl, message) {
-        errorEl.textContent = message || '';
-        if (message) {
-          fieldEl.setAttribute('aria-invalid', 'true');
-        } else {
-          fieldEl.setAttribute('aria-invalid', 'false');
-        }
-      }
-
-      function validateAndEnableSubmit() {
-        const emailOk = validateEmail(emailInput.value);
+      const updateSubmitState = () => {
+        const emailOk = emailInput.value.trim() && validateEmail(emailInput.value);
         const passwordOk = validatePassword(passwordInput.value);
         submitBtn.disabled = !(emailOk && passwordOk);
-      }
+      };
 
       emailInput.addEventListener('input', () => {
-        if (emailInput.value.trim() === '') {
-          setFieldError(emailInput, emailError, 'Email is required.');
+        if (!emailInput.value.trim()) {
+          setError(emailInput, emailError, 'Enterprise email required.');
         } else if (!validateEmail(emailInput.value)) {
-          setFieldError(emailInput, emailError, 'Enter a valid email address.');
+          setError(emailInput, emailError, 'Invalid email format.');
         } else {
-          setFieldError(emailInput, emailError, '');
+          setError(emailInput, emailError, '');
         }
-        validateAndEnableSubmit();
+        updateSubmitState();
       });
 
       passwordInput.addEventListener('input', () => {
-        if (passwordInput.value === '') {
-          setFieldError(passwordInput, passwordError, 'Password is required.');
+        if (!passwordInput.value) {
+          setError(passwordInput, passwordError, 'Passphrase required.');
         } else if (!validatePassword(passwordInput.value)) {
-          setFieldError(passwordInput, passwordError, 'Password must be at least 8 characters.');
+          setError(passwordInput, passwordError, 'Minimum 12 characters required.');
         } else {
-          setFieldError(passwordInput, passwordError, '');
+          setError(passwordInput, passwordError, '');
         }
-        validateAndEnableSubmit();
+        updateSubmitState();
       });
 
-      togglePasswordButton.addEventListener('click', () => {
+      togglePasswordBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         const isPassword = passwordInput.type === 'password';
         passwordInput.type = isPassword ? 'text' : 'password';
-        togglePasswordButton.textContent = isPassword ? '🙈' : '👁';
-        togglePasswordButton.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+        togglePasswordBtn.textContent = isPassword ? '👁' : '🔒';
+        togglePasswordBtn.setAttribute('aria-label', isPassword ? 'Hide passphrase' : 'Show passphrase');
       });
 
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
         const emailValid = validateEmail(emailInput.value);
         const passwordValid = validatePassword(passwordInput.value);
 
-        if (!emailValid) {
-          setFieldError(emailInput, emailError, 'Enter a valid email address.');
-        }
-
-        if (!passwordValid) {
-          setFieldError(passwordInput, passwordError, 'Password must be at least 8 characters.');
-        }
+        if (!emailValid) setError(emailInput, emailError, 'Invalid email format.');
+        if (!passwordValid) setError(passwordInput, passwordError, 'Minimum 12 characters required.');
 
         if (!emailValid || !passwordValid) return;
 
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Signing in...';
+        submitBtn.textContent = 'Initializing Neural Session...';
 
         try {
-          await new Promise((resolve) => setTimeout(resolve, 1200));
-          window.location.href = '/';
+          await new Promise((resolve) => setTimeout(resolve, 2400));
+          window.location.href = '/workspace';
         } catch (error) {
-          setFieldError(emailInput, emailError, 'Unable to sign in. Please try again.');
+          setError(emailInput, emailError, 'Authentication failed. Retry neural verification.');
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Sign in';
+          submitBtn.textContent = 'Initiate Superintelligence Session';
         }
       });
 
-      validateAndEnableSubmit();
+      updateSubmitState();
     </script>
   </body>
 </html>
