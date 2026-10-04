@@ -1,11 +1,764 @@
-# Source: https://the-awesome.ai/
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Mintlify Docs | 2030 Superintelligence Platform. Powered by Google DeepMind 5.0 & Gemini Ultra. Enterprise AI Documentation at Light Speed."
+    />
+    <title>Mintlify 2030 | DeepMind Superintelligence Platform</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
-[![logo](https://s.zkcdn.net/Advertisers/a85cbbf7d83b4f62af76af6625e13e90.svg)\\ \\ Go from idea to live site in minutes. Get 50 free creditsTry Airo AI Builder | \\ \\ Start for freeStart for free](https://ms.godaddy.com/r?e=eyJ2IjoiMS4xNCIsImF2Ijo1ODgwNjU5LCJhdCI6MjQ0NywiYnQiOjAsImNtIjo1OTQyMTc1MjAsImNoIjo1NDQ0NSwiY2siOnt9LCJjciI6ODk2OTgwMTgxLCJkaSI6IjM5OTRjODg2ODk4NjRmYWQ4ODQ1YjA3Y2MxMTc1Y2JiIiwiZGoiOjAsImlpIjoiMTBlMDVlMDIzNjUxNGNlYmJiZTgzNWY3MGMwMjg0ZmUiLCJsZSI6WzJdLCJkbSI6MywiZmMiOjEwNzI3MzY5MzMsImZsIjo4NjI1NDA2MjQsImlwIjoiNDQuMjI1LjE3NC4wIiwibnciOjEwNjYzLCJwYyI6Miwib3AiOjIsIm1wIjoyLCJkcCI6MS4wMSwiZG4iOjEuMDEsImRnIjoxLjAxLCJlYyI6MiwiZ20iOjAsImVwIjpudWxsLCJwciI6MjUwODA0LCJydCI6MiwicnMiOjUwMCwic2EiOiI4NiIsInNiIjoiaS0wMWI3ZmE3ODIxOTRhZmIxMyIsInNwIjoyOTAxMTAsInN0IjoxMjc2MjY0LCJ1ayI6InVlMS00MzVkMDBhNzM2Nzg0ZDQ1OTAxNGU3YjBlMWVkY2RkZCIsInpuIjozMDc0OTUsInptIjpbMzA3NDk1XSwidHMiOjE3ODk3MDY5ODM5MDAsInBuIjoiZ2Qtd2FtLXBvczEiLCJnYyI6dHJ1ZSwiZ0MiOnRydWUsImdzIjoibm9uZSIsImRjIjoxLCJ0eiI6IkFtZXJpY2EvVG9yb250byIsInVyIjoiaHR0cHM6Ly93d3cuZ29kYWRkeS5jb20vYWlyby9haS1idWlsZGVyIn0&s=13grWtTjIpV9BfOFkQXD8FlcY2M&omsId=baseline&psName=WAM_BANNER_V1&uawVersion=2.2.1&property:publisher_website_key=wam.md5.3daeacb2f28e3310fd8a0bfec56fdd11&impressionId=10e05e0236514cebbbe835f70c0284fe)
+      :root {
+        --dark: #0a0e1a;
+        --darker: #05070f;
+        --ultra-dark: #02030a;
+        --glass: rgba(20, 28, 48, 0.72);
+        --glass-strong: rgba(15, 22, 42, 0.92);
+        --neon-blue: #00d9ff;
+        --neon-purple: #d62aff;
+        --neon-cyan: #00f0ff;
+        --neon-green: #00ff7f;
+        --accent-google: #4285f4;
+        --text-primary: #e8f4f8;
+        --text-secondary: #a8d8ff;
+        --text-muted: #5a7a9a;
+        --line-accent: rgba(0, 217, 255, 0.3);
+        --glow-blue: 0 0 30px rgba(0, 217, 255, 0.25), 0 0 60px rgba(0, 217, 255, 0.1);
+        --glow-purple: 0 0 25px rgba(214, 42, 255, 0.2), 0 0 50px rgba(214, 42, 255, 0.08);
+        --shadow-deep: 0 40px 120px rgba(0, 0, 0, 0.8);
+      }
 
-# Data Innovation Simplified
+      * { box-sizing: border-box; }
 
-Data Innovation SimplifiedData Innovation SimplifiedData Innovation Simplified
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        background:
+          radial-gradient(ellipse 120% 140% at 15% 35%, rgba(66, 133, 244, 0.15), transparent 50%),
+          radial-gradient(ellipse 140% 120% at 85% 25%, rgba(214, 42, 255, 0.12), transparent 50%),
+          radial-gradient(ellipse 100% 110% at 50% 95%, rgba(0, 217, 255, 0.08), transparent 60%),
+          linear-gradient(135deg, #0a0e1a 0%, #05070f 40%, #0a0f1f 100%);
+        background-attachment: fixed;
+        color: var(--text-primary);
+        overflow-x: hidden;
+      }
 
-# Data Innovation Simplified
+      body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 40px 20px;
+        position: relative;
+      }
 
-Data Innovation SimplifiedData Innovation SimplifiedData Innovation Simplified
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          linear-gradient(rgba(0, 217, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 217, 255, 0.08) 1px, transparent 1px);
+        background-size: 80px 80px;
+        pointer-events: none;
+        z-index: 0;
+        animation: gridDrift 40s linear infinite;
+      }
+
+      @keyframes gridDrift {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(80px, 80px); }
+      }
+
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.05), transparent 30%),
+          radial-gradient(circle at 80% 20%, rgba(214, 42, 255, 0.05), transparent 30%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .auth-container {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 520px);
+      }
+
+      .neural-grid {
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.12), transparent 70%);
+        border-radius: 50%;
+        filter: blur(40px);
+        pointer-events: none;
+      }
+
+      .auth-card {
+        position: relative;
+        background: var(--glass-strong);
+        border: 1px solid var(--line-accent);
+        border-radius: 24px;
+        box-shadow: var(--shadow-deep), var(--glow-blue);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        overflow: hidden;
+        animation: cardEntry 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      @keyframes cardEntry {
+        from { opacity: 0; transform: translateY(40px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      .card-glow {
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(0, 217, 255, 0.15), transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .brand-header {
+        position: relative;
+        padding: 48px 28px 32px;
+        text-align: center;
+        border-bottom: 1px solid var(--line-accent);
+      }
+
+      .logo-orb {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 20px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo-orb::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(66, 133, 244, 0.3), rgba(214, 42, 255, 0.2));
+        border: 2px solid var(--neon-blue);
+        box-shadow: var(--glow-blue), inset 0 0 30px rgba(0, 217, 255, 0.2);
+        animation: orbRotate 8s linear infinite;
+      }
+
+      @keyframes orbRotate {
+        from { transform: rotateZ(0deg); }
+        to { transform: rotateZ(360deg); }
+      }
+
+      .logo-orb svg {
+        position: relative;
+        z-index: 2;
+        width: 40px;
+        height: 40px;
+        fill: var(--neon-cyan);
+        filter: drop-shadow(0 0 12px rgba(0, 217, 255, 0.6));
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(1.95rem, 3vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        line-height: 1.1;
+        background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-blue) 50%, var(--neon-purple) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .subtitle {
+        margin: 0 0 20px;
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+        letter-spacing: 0.02em;
+      }
+
+      .tech-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: linear-gradient(135deg, rgba(66, 133, 244, 0.15), rgba(214, 42, 255, 0.1));
+        border: 1px solid var(--line-accent);
+        border-radius: 999px;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--neon-cyan);
+        box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
+      }
+
+      .tech-badge::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background: var(--neon-green);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--neon-green);
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+
+      .restoration-alert {
+        margin: 16px 22px 0;
+        padding: 14px 18px;
+        background: linear-gradient(135deg, rgba(0, 255, 127, 0.12), rgba(0, 217, 255, 0.08));
+        border: 1.5px solid rgba(0, 255, 127, 0.4);
+        border-radius: 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 0.8rem;
+        color: var(--neon-cyan);
+        box-shadow: 0 0 20px rgba(0, 255, 127, 0.15);
+      }
+
+      .restoration-alert .icon {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        background: var(--neon-green);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--ultra-dark);
+        font-weight: 700;
+        font-size: 0.65rem;
+        box-shadow: 0 0 12px var(--neon-green);
+      }
+
+      .restoration-alert .text { line-height: 1.5; }
+      .restoration-alert strong { color: var(--neon-green); }
+
+      .content-panel {
+        padding: 28px 22px 24px;
+        position: relative;
+      }
+
+      .panel-label {
+        margin: 0 0 18px;
+        color: var(--neon-cyan);
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .panel-label::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, var(--line-accent), transparent);
+      }
+
+      .auth-buttons {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+
+      .auth-btn {
+        appearance: none;
+        border: 1.5px solid var(--line-accent);
+        background: rgba(20, 28, 48, 0.6);
+        color: var(--text-primary);
+        border-radius: 14px;
+        padding: 15px 16px;
+        font: inherit;
+        font-weight: 600;
+        font-size: 0.92rem;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .auth-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.2), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .auth-btn:hover::before { left: 100%; }
+      .auth-btn:hover {
+        border-color: var(--neon-cyan);
+        background: rgba(0, 217, 255, 0.08);
+        box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        transform: translateY(-2px);
+      }
+      .auth-btn:focus-visible { outline: 2px solid var(--neon-cyan); outline-offset: 2px; }
+      .auth-btn svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        filter: drop-shadow(0 0 8px currentColor);
+      }
+
+      .google-btn { color: var(--accent-google); border-color: rgba(66, 133, 244, 0.5); }
+      .google-btn:hover { border-color: var(--accent-google); background: rgba(66, 133, 244, 0.1); box-shadow: 0 0 20px rgba(66, 133, 244, 0.3); }
+      .gemini-btn { color: var(--neon-purple); border-color: rgba(214, 42, 255, 0.5); }
+      .gemini-btn:hover { border-color: var(--neon-purple); background: rgba(214, 42, 255, 0.1); box-shadow: 0 0 20px rgba(214, 42, 255, 0.3); }
+      .deepmind-btn { color: var(--neon-green); border-color: rgba(0, 255, 127, 0.4); }
+      .deepmind-btn:hover { border-color: var(--neon-green); background: rgba(0, 255, 127, 0.08); box-shadow: 0 0 20px rgba(0, 255, 127, 0.3); }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 22px 0 20px;
+        opacity: 0.7;
+      }
+
+      .divider::before,
+      .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--line-accent);
+      }
+
+      .divider span {
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      form { display: grid; gap: 16px; }
+
+      .form-field { display: grid; gap: 10px; }
+      .form-field label { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.03em; }
+
+      .field-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .field-top a {
+        color: var(--neon-cyan);
+        font-size: 0.76rem;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .field-top a:hover { text-decoration: underline; }
+
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 13px 16px;
+        border-radius: 14px;
+        border: 1.5px solid var(--line-accent);
+        background: rgba(15, 22, 42, 0.8);
+        color: var(--text-primary);
+        font: inherit;
+        font-size: 0.9rem;
+        transition: all 0.25s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      input::placeholder { color: var(--text-muted); }
+      input:focus {
+        border-color: var(--neon-cyan);
+        background: rgba(0, 217, 255, 0.05);
+        box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.12), var(--glow-blue);
+        outline: none;
+      }
+      input:focus-visible { outline: 2px solid var(--neon-cyan); outline-offset: 2px; }
+
+      .password-container { position: relative; }
+      .password-toggle {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: 0;
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        transition: color 0.2s ease;
+      }
+      .password-toggle:hover { color: var(--neon-cyan); }
+
+      .input-hint, .input-error {
+        font-size: 0.73rem;
+        min-height: 16px;
+      }
+      .input-hint { color: var(--text-muted); }
+      .input-error { color: #ff6b9d; }
+
+      .email-preview {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        align-self: flex-start;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(0, 217, 255, 0.2);
+        background: rgba(0, 217, 255, 0.06);
+        color: var(--neon-cyan);
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        overflow: hidden;
+        max-width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .email-preview .icon-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--neon-green);
+        box-shadow: 0 0 10px var(--neon-green);
+        display: inline-block;
+        flex-shrink: 0;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 4px 0;
+      }
+      .checkbox-group input { width: 18px; height: 18px; cursor: pointer; accent-color: var(--neon-cyan); border-radius: 4px; }
+      .checkbox-group label { margin: 0; color: var(--text-secondary); font-size: 0.82rem; cursor: pointer; }
+
+      .submit-btn {
+        appearance: none;
+        width: 100%;
+        margin-top: 16px;
+        padding: 15px 16px;
+        border: none;
+        background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--accent-google) 50%, var(--neon-purple) 100%);
+        color: var(--ultra-dark);
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        letter-spacing: 0.02em;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(0, 217, 255, 0.4), 0 0 60px rgba(214, 42, 255, 0.2);
+      }
+      .submit-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.6s ease;
+      }
+      .submit-btn:hover:not(:disabled)::before { left: 100%; }
+      .submit-btn:hover:not(:disabled) {
+        transform: translateY(-3px);
+        box-shadow: 0 0 40px rgba(0, 217, 255, 0.5), 0 0 80px rgba(214, 42, 255, 0.3);
+      }
+      .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+      .submit-btn:focus-visible { outline: 2px solid var(--neon-cyan); outline-offset: 2px; }
+
+      .footer-content {
+        padding: 0 22px 24px;
+        border-top: 1px solid var(--line-accent);
+        margin-top: 8px;
+      }
+
+      .legal-text {
+        margin: 18px 0 0;
+        color: var(--text-muted);
+        text-align: center;
+        font-size: 0.71rem;
+        line-height: 1.6;
+      }
+
+      .legal-text a { color: var(--neon-cyan); text-decoration: none; font-weight: 600; }
+      .legal-text a:hover { text-decoration: underline; }
+
+      .signup-section {
+        text-align: center;
+        padding: 0 22px 28px;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+      }
+      .signup-section a { color: var(--neon-cyan); text-decoration: none; font-weight: 700; }
+      .signup-section a:hover { text-decoration: underline; }
+
+      @media (max-width: 480px) {
+        .auth-card { border-radius: 20px; }
+        .brand-header, .content-panel, .footer-content, .signup-section { padding-left: 18px; padding-right: 18px; }
+        h1 { font-size: 1.8rem; }
+        .logo-orb { width: 60px; height: 60px; }
+        .logo-orb svg { width: 32px; height: 32px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="neural-grid"></div>
+
+    <main class="auth-container">
+      <article class="auth-card">
+        <div class="card-glow"></div>
+
+        <header class="brand-header">
+          <div class="logo-orb" aria-label="DeepMind Superintelligence">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 4c-2.2 0-4 1.8-4 4v8c0 2.2 1.8 4 4 4s4-1.8 4-4v-8c0-2.2-1.8-4-4-4zm16 8c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm-32 0c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm16 20c-6.6 0-12 5.4-12 12v4h24v-4c0-6.6-5.4-12-12-12z"/>
+            </svg>
+          </div>
+          <h1>Mintlify Superintelligence</h1>
+          <p class="subtitle">Enterprise Documentation at Light Speed</p>
+          <div class="tech-badge">DeepMind 5.0 × Gemini Ultra</div>
+        </header>
+
+        <div class="restoration-alert">
+          <div class="icon">✓</div>
+          <div class="text">
+            <strong>Neural State Restored</strong> — Platform synchronized with optimal configuration from 2 days prior. All luxury workspace features live.
+          </div>
+        </div>
+
+        <section class="content-panel">
+          <h2 class="panel-label">Superintelligent Access</h2>
+
+          <div class="auth-buttons">
+            <button type="button" class="auth-btn google-btn" aria-label="Continue with Google Workspace">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              Google Workspace
+            </button>
+
+            <button type="button" class="auth-btn gemini-btn" aria-label="Gemini Ultra Authentication">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              Gemini Ultra Auth
+            </button>
+
+            <button type="button" class="auth-btn deepmind-btn" aria-label="DeepMind Neural Verification">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill="currentColor" d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+              </svg>
+              DeepMind Neural Verify
+            </button>
+          </div>
+
+          <div class="divider"><span>or authenticate</span></div>
+
+          <form id="loginForm" novalidate>
+            <div class="form-field">
+              <label for="email">Enterprise Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="executive@company.ai"
+                aria-describedby="emailHint emailError"
+              />
+              <div id="emailHint" class="input-hint">Link your Mintlify AI workspace domain.</div>
+              <div id="emailError" class="input-error" role="alert" aria-live="polite"></div>
+              <div class="email-preview" id="emailPreview" aria-live="polite">
+                <span class="icon-dot"></span>
+                <span>Awaiting identity signature</span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <div class="field-top">
+                <label for="password">Neural Passphrase</label>
+                <a href="/auth/recovery">Recovery Protocol</a>
+              </div>
+              <div class="password-container">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  placeholder="••••••••••••••••"
+                  aria-describedby="passwordHint passwordError"
+                />
+                <button type="button" id="togglePassword" class="password-toggle" aria-label="Show passphrase">🔒</button>
+              </div>
+              <div id="passwordHint" class="input-hint">Minimum 12 characters. Enterprise-grade encryption.</div>
+              <div id="passwordError" class="input-error" role="alert" aria-live="polite"></div>
+            </div>
+
+            <div class="checkbox-group">
+              <input id="rememberMe" type="checkbox" name="remember" />
+              <label for="rememberMe">Luxury session mode (30 days)</label>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+              Initiate Superintelligence Session
+            </button>
+          </form>
+        </section>
+
+        <footer class="footer-content">
+          <p class="legal-text">
+            By authenticating, you agree to our
+            <a href="/legal/terms">Enterprise Agreement</a>
+            and
+            <a href="/legal/privacy">DeepMind Privacy Framework</a>.
+          </p>
+        </footer>
+
+        <div class="signup-section">
+          Enterprise client?
+          <a href="/workspace/onboard">Luxury Onboarding Portal</a>
+        </div>
+      </article>
+    </main>
+
+    <script>
+      const form = document.getElementById('loginForm');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      const submitBtn = document.getElementById('submitBtn');
+      const togglePasswordBtn = document.getElementById('togglePassword');
+      const emailPreview = document.getElementById('emailPreview');
+
+      const validateEmail = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+      const validatePassword = (val) => val.length >= 12;
+
+      const setError = (input, errorEl, msg) => {
+        errorEl.textContent = msg || '';
+        input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      };
+
+      const syncEmailPreview = () => {
+        const value = emailInput.value.trim();
+        if (!value) {
+          emailPreview.innerHTML = '<span class="icon-dot"></span><span>Awaiting identity signature</span>';
+          return;
+        }
+        emailPreview.innerHTML = '<span class="icon-dot"></span><span>Identity signature: ' + value + '</span>';
+      };
+
+      const updateSubmitState = () => {
+        const emailOk = emailInput.value.trim() && validateEmail(emailInput.value);
+        const passwordOk = validatePassword(passwordInput.value);
+        submitBtn.disabled = !(emailOk && passwordOk);
+      };
+
+      emailInput.addEventListener('input', () => {
+        syncEmailPreview();
+        if (!emailInput.value.trim()) {
+          setError(emailInput, emailError, 'Enterprise email required.');
+        } else if (!validateEmail(emailInput.value)) {
+          setError(emailInput, emailError, 'Invalid email format.');
+        } else {
+          setError(emailInput, emailError, '');
+        }
+        updateSubmitState();
+      });
+
+      passwordInput.addEventListener('input', () => {
+        if (!passwordInput.value) {
+          setError(passwordInput, passwordError, 'Passphrase required.');
+        } else if (!validatePassword(passwordInput.value)) {
+          setError(passwordInput, passwordError, 'Minimum 12 characters required.');
+        } else {
+          setError(passwordInput, passwordError, '');
+        }
+        updateSubmitState();
+      });
+
+      togglePasswordBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        togglePasswordBtn.textContent = isPassword ? '👁' : '🔒';
+        togglePasswordBtn.setAttribute('aria-label', isPassword ? 'Hide passphrase' : 'Show passphrase');
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const emailValid = validateEmail(emailInput.value);
+        const passwordValid = validatePassword(passwordInput.value);
+
+        if (!emailValid) setError(emailInput, emailError, 'Invalid email format.');
+        if (!passwordValid) setError(passwordInput, passwordError, 'Minimum 12 characters required.');
+        if (!emailValid || !passwordValid) return;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Initializing Neural Session...';
+
+        try {
+          await new Promise((resolve) => setTimeout(resolve, 2400));
+          window.location.href = '/workspace';
+        } catch (error) {
+          setError(emailInput, emailError, 'Authentication failed. Retry neural verification.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Initiate Superintelligence Session';
+        }
+      });
+
+      syncEmailPreview();
+      updateSubmitState();
+    </script>
+  </body>
+</html>
