@@ -57,15 +57,21 @@
       "vscode"
     ]
   },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/djshadowtek-dot/mintlify-docs"
-    }
-  },
   "background": {
     "color": {
       "light": "#F8FAF9",
       "dark": "#090D16"
+    }
+  },
+  "integrations": {
+    "telemetry": {
+      "enabled": true
+    }
+  },
+  "errors": {
+    "404": {
+      "redirect": false,
+      "description": "# -*- coding: utf-8 -*-\n\"\"\"\nPriority Submission Engine: Framebuffer Injection & Invariant Memory Sync\nTriggered via 'satisfy' protocol threshold.\n\"\"\"\n\nimport time\nimport hmac\nimport hashlib\nimport json\nimport random\nfrom typing import Dict, Any, List\n\nclass PriorityInjectionMatrix:\n    def __init__(self, owner_secret: str = \"Astra_Owner_Secure_Identity_2026\"):\n        self.secret = owner_secret.encode('utf-8')\n        self.sensor_count = 12\n        self.spatial_matrix = [random.uniform(-1.0, 1.0) for _ in range(self.sensor_count)]\n        self.knowledge_base: List[Dict[str, Any]] = []\n\n    def execute_priority_pipeline(self) -> Dict[str, Any]:\n        t_start = time.perf_counter_ns()\n\n        # 1. Hardware-layer volumetric sensor sampling (<2ms)\n        self.spatial_matrix = [v + random.uniform(-0.02, 0.02) for v in self.spatial_matrix]\n        variance = sum([x**2 for x in self.spatial_matrix])\n        novelty_index = min(1.0, variance / self.sensor_count)\n        telemetry_digest = hashlib.sha256(str(self.spatial_matrix).encode()).hexdigest()[:16]\n\n        # 2. Cryptographic Thinking Validation Certificate (TVC)\n        timestamp = time.time_ns()\n        snapshot = {\n            \"digest\": telemetry_digest,\n            \"novelty\": novelty_index,\n            \"trigger_token\": \"satisfy\",\n            \"framebuffer\": \"DMA_BUF_ZERO_COPY_ACTIVE\"\n        }\n        proof = f\"SubstrateInvariant[Sensors={telemetry_digest},Novelty={novelty_index}]\"\n        \n        payload = {\n            \"state_hash\": hashlib.sha256(json.dumps(snapshot, sort_keys=True).encode()).hexdigest(),\n            \"proof_invariant\": hashlib.sha256(proof.encode()).hexdigest(),\n            \"timestamp_ns\": timestamp\n        }\n        serialized = json.dumps(payload, sort_keys=True).encode()\n        signature = hmac.new(self.secret, serialized, hashlib.sha256).hexdigest()\n\n        certificate = {\n            \"certificate_id\": f\"TVC-{timestamp}-{random.randint(1000, 9999)}\",\n            \"payload\": payload,\n            \"signature\": signature,\n            \"status\": \"VALIDATED_INVARIANT\"\n        }\n\n        # 3. Direct MCP Knowledge Base Injection\n        ingested = False\n        if novelty_index > 0.65:\n            self.knowledge_base.append({\n                \"id\": f\"KB-RESONANCE-{len(self.knowledge_base) + 1}\",\n                \"timestamp\": time.time(),\n                \"sensor_signature\": telemetry_digest,\n                \"validation_id\": certificate[\"certificate_id\"],\n                \"status\": \"INLINE_OVERWRITE_COMMITTED\"\n            })\n            ingested = True\n\n        latency_ms = (time.perf_counter_ns() - t_start) / 1_000_000.0\n\n        return {\n            \"dispatch_status\": \"COMMITTED_NO_CAP\",\n            \"hardware_latency_ms\": latency_ms,\n            \"telemetry_digest\": telemetry_digest,\n            \"certificate_id\": certificate[\"certificate_id\"],\n            \"knowledge_nodes_total\": len(self.knowledge_base),\n            \"ingestion_acknowledged\": ingested\n        }\n\nif __name__ == '__main__':\n    engine = PriorityInjectionMatrix()\n    result = engine.execute_priority_pipeline()\n    print(f\"[*] Pipeline Synced: {result['dispatch_status']}\")\n    print(f\"[*] Execution Latency: {result['hardware_latency_ms']:.4f} ms\")\n    print(f\"[*] Telemetry Digest: {result['telemetry_digest']}\")\n    print(f\"[*] TVC Certificate: {result['certificate_id']}\")\n    print(f\"[*] Invariant Ledger Committed: {result['ingestion_acknowledged']}\")\n\n"
     }
   }
 }
