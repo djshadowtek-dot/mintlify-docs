@@ -1,0 +1,60 @@
+---
+title: "Platform Settings and Workspace Configuration Guide"
+sidebarTitle: "Settings"
+description: "Manage your The Awesome workspace settings: general preferences, data retention policies, security controls, and billing options in one place."
+---
+
+The Settings panel in The Awesome gives you control over every aspect of your workspace — from display preferences and data retention to security policies and billing. Navigate to **Settings** from the left sidebar to access all configuration options.
+
+## General Settings
+
+Customize the following options to match your team's preferences:
+
+- **Workspace Name**: The display name for your organization's workspace.
+- **Default Timezone**: Sets the timezone used for scheduled workflows and timestamp display.
+- **Language**: Interface language preference (English, Spanish, French, German, Japanese).
+- **Date Format**: Choose between `YYYY-MM-DD`, `MM/DD/YYYY`, or `DD/MM/YYYY`.
+
+## Data Retention
+
+By default, The Awesome retains analysis results and raw source data for 90 days. You can adjust this window at any time to meet your team's storage and compliance requirements — or permanently remove all stored data if needed.
+
+<AccordionGroup>
+  <Accordion title="Adjust Retention Period">
+    Navigate to **Settings → Data & Privacy → Retention Policy** and choose one of the available retention windows: 30, 60, 90, 180, or 365 days.
+
+    Changes to your retention policy apply to **new data only**. Existing data retains its original time-to-live (TTL) and will expire according to the policy that was active when it was ingested.
+  </Accordion>
+
+  <Accordion title="Delete All Data">
+    To immediately remove all stored data from your workspace, click **Purge All Data** from the **Settings → Data & Privacy → Retention Policy** page.
+
+    <Warning>
+      Purging data is permanent and cannot be undone. Export any results you need before proceeding.
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+## Security
+
+Keep your workspace secure by enabling two-factor authentication and reviewing active sessions regularly.
+
+### Two-Factor Authentication (2FA)
+
+Enable 2FA from **Settings → Security → Two-Factor Authentication**. The Awesome supports both authenticator apps (TOTP) and SMS-based verification. Once enabled, every sign-in requires a one-time code in addition to your password.
+
+<Tip>
+  Use an authenticator app (e.g., Google Authenticator, Authy) rather than SMS for stronger security.
+</Tip>
+
+### Session Management
+
+Review all active sessions for your account under **Settings → Security → Sessions**. Each entry shows the device, browser, and approximate location. To close a specific session, click **Revoke** next to it. To sign out of all other devices at once, click **Revoke All Other Sessions**.
+
+## Billing & Plan
+
+Manage your subscription from **Settings → Billing**. This page displays your current plan, key usage metrics (analyses run, storage used), and available upgrade options.
+
+<Note>
+  Plan upgrades take effect immediately. Downgrades are applied at the end of the current billing period.
+</Note>

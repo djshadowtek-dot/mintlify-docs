@@ -1,0 +1,172 @@
+---
+title: "Data Sources API — Manage Connections Programmatically"
+sidebarTitle: "Data Sources"
+description: "REST API reference for The Awesome Data Sources endpoints: list, create, and delete your data source connections programmatically via the API."
+---
+
+The Data Sources API lets you manage the data connections that power your analysis jobs — creating new sources, retrieving connection status, and removing sources you no longer need, all without touching the dashboard.
+
+## List All Data Sources
+
+### `GET /data-sources`
+
+Retrieve a list of all data sources connected to your account.
+
+```bash
+curl https://api.the-awesome.ai/v1/data-sources \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response**
+
+```json
+{
+  "data_sources": [
+    {
+      "id": "ds_abc123",
+      "name": "Sales DB",
+      "type": "postgresql",
+      "status": "connected",
+      "created_at": "2025-01-10T08:00:00Z"
+    }
+  ]
+}
+```
+
+<Info>
+  The `status` field reflects the last connection test result. Possible values are `connected`, `disconnected`, and `error`. Re-test a source from the dashboard or by updating its connection details via the API.
+</Info>
+
+---
+
+## Create a Data Source
+
+### `POST /data-sources`
+
+Register a new data source connection. The Awesome validates and tests the connection before confirming creation.
+
+<ParamField body="name" type="string" required>
+  A human-readable name for the data source. Use something descriptive so you can identify it in analysis jobs and results — for example, `Production DB` or `Q1 Sales CSV`.
+</ParamField>
+
+<ParamField body="type" type="string" required>
+  The type of data source to connect. Accepted values: `csv_upload`, `postgresql`, `mysql`, `rest_api`, `s3`.
+</ParamField>
+
+<ParamField body="connection" type="object" required>
+  Connection details for the source. The required fields vary by `type`. See the examples below for each supported source type.
+</ParamField>
+
+<Tabs>
+  <Tab title="PostgreSQL">
+    ```bash
+    curl -X POST https://api.the-awesome.ai/v1/data-sources \
+      -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "name": "Production DB",
+        "type": "postgresql",
+        "connection": {
+          "host": "db.example.com",
+          "port": 5432,
+          "database": "analytics",
+          "username": "reader",
+          "password": "secret"
+        }
+      }'
+    ```
+  </Tab>
+  <Tab title="MySQL">
+    ```bash
+    curl -X POST https://api.the-awesome.ai/v1/data-sources \
+      -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "name": "MySQL Warehouse",
+        "type": "mysql",
+        "connection": {
+          "host": "mysql.example.com",
+          "port": 3306,
+          "database": "warehouse",
+          "username": "reader",
+          "password": "secret"
+        }
+      }'
+    ```
+  </Tab>
+  <Tab title="Amazon S3">
+    ```bash
+    curl -X POST https://api.the-awesome.ai/v1/data-sources \
+      -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "name": "S3 Data Lake",
+        "type": "s3",
+        "connection": {
+          "bucket": "my-data-lake",
+          "region": "us-east-1",
+          "access_key_id": "AKIAIOSFODNN7EXAMPLE",
+          "secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+          "path_prefix": "exports/2025/"
+        }
+      }'
+    ```
+  </Tab>
+  <Tab title="REST API">
+    ```bash
+    curl -X POST https://api.the-awesome.ai/v1/data-sources \
+      -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "name": "CRM API",
+        "type": "rest_api",
+        "connection": {
+          "base_url": "https://api.crm.example.com/v2",
+          "auth_header": "Authorization",
+          "auth_value": "Bearer crm-token-here"
+        }
+      }'
+    ```
+  </Tab>
+</Tabs>
+
+**Response**
+
+```json
+{
+  "id": "ds_def456",
+  "name": "Production DB",
+  "type": "postgresql",
+  "status": "connected",
+  "created_at": "2025-01-15T10:00:00Z"
+}
+```
+
+<Note>
+  The Awesome tests the connection immediately on creation. If the connection fails, the API returns a `422 Unprocessable Entity` with a message describing the issue — for example, an unreachable host or incorrect credentials.
+</Note>
+
+---
+
+## Delete a Data Source
+
+### `DELETE /data-sources/{id}`
+
+Permanently remove a data source from your account. Deleting a source does not delete analysis jobs or results that were already produced from it.
+
+<ParamField path="id" type="string" required>
+  The unique identifier of the data source to delete — for example, `ds_def456`. Obtain this from the list or create endpoint.
+</ParamField>
+
+```bash
+curl -X DELETE https://api.the-awesome.ai/v1/data-sources/ds_def456 \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response**
+
+A successful deletion returns `204 No Content` with an empty body.
+
+<Warning>
+  Deleting a data source is permanent and cannot be undone. Any analysis job that references the deleted source will no longer be able to re-run against it. Make sure you no longer need the connection before deleting it.
+</Warning>

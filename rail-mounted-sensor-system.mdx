@@ -1,0 +1,181 @@
+---
+title: "Rail-Mounted Sensor and Dynamic Target Control Diagram"
+sidebarTitle: "Rail-Mounted Sensor System"
+description: "Generate the rail-mounted sensor and dynamic target control system diagram with Graphviz, showing sensing, AI processing, simulation, and control loops."
+---
+
+This page provides a Python script that uses Graphviz to render the rail-mounted sensor and dynamic target control system diagram. It visualizes the flow from sensor input through AI imagery analysis, coordinate transformation, simulator target state, auto-aim correction, and closed-loop feedback.
+
+## Script
+
+```python build_diagram.py
+from graphviz import Digraph
+
+DIAGRAM_DATE = "September 18, 2026"
+VERSION = "v2.1"
+
+
+def build_sensor_simulation_diagram(
+    output_file="rail_mounted_sensor_system_2026"
+):
+    diagram = Digraph(
+        name="RailMountedSensorSystem",
+        format="png"
+    )
+    diagram.attr(
+        rankdir="LR",
+        splines="ortho",
+        nodesep="0.8",
+        ranksep="1.0",
+        pad="0.3",
+        bgcolor="white",
+        labelloc="t",
+        label=(
+            f"Rail-Mounted Sensor and Dynamic Target Control System\n"
+            f"Updated: {DIAGRAM_DATE} | {VERSION}"
+        ),
+        fontname="Arial",
+        fontsize="16"
+    )
+    diagram.attr(
+        "node",
+        shape="box",
+        style="rounded,filled",
+        color="#333333",
+        fontname="Arial",
+        fontsize="11",
+        margin="0.2,0.12"
+    )
+    diagram.attr(
+        "edge",
+        color="#333333",
+        fontname="Arial",
+        fontsize="10",
+        arrowsize="0.8"
+    )
+    # Input and sensing layer
+    diagram.node(
+        "sensor",
+        "Rail-Mounted Sensor\n"
+        "Optical / Imaging Input",
+        fillcolor="#D9EAF7"
+    )
+    diagram.node(
+        "telemetry",
+        "Telemetry Acquisition\n"
+        "Speed, Position, Timing",
+        fillcolor="#D9EAF7"
+    )
+    # AI processing layer
+    diagram.node(
+        "ai",
+        "AI Imagery Analysis\n"
+        "Object Detection and Tracking",
+        fillcolor="#EADCF8"
+    )
+    diagram.node(
+        "processing",
+        "Mainframe / Cloud\n"
+        "Processing Loop",
+        fillcolor="#DFF0D8"
+    )
+    diagram.node(
+        "coordinates",
+        "Coordinate and Vector\n"
+        "Transformation",
+        fillcolor="#DFF0D8"
+    )
+    # Simulation layer
+    diagram.node(
+        "target",
+        "Simulator Dynamic Target\n"
+        "Position, Velocity, Orientation",
+        fillcolor="#FFF2CC"
+    )
+    # Control layer
+    diagram.node(
+        "correction",
+        "Auto-Aim Correction\n"
+        "Error Calculation",
+        fillcolor="#FCE4D6"
+    )
+    diagram.node(
+        "actuators",
+        "Motorized Actuators /\n"
+        "Gimbal Control",
+        fillcolor="#FCE4D6"
+    )
+    diagram.node(
+        "feedback",
+        "Position and Orientation\n"
+        "Feedback",
+        fillcolor="#E2F0D9"
+    )
+    # Sensor inputs
+    diagram.edge(
+        "sensor",
+        "ai",
+        label="Image Frames"
+    )
+    diagram.edge(
+        "sensor",
+        "telemetry",
+        label="Raw Sensor Data"
+    )
+    diagram.edge(
+        "telemetry",
+        "processing",
+        label="Speed and Timing Data"
+    )
+    # AI and processing pipeline
+    diagram.edge(
+        "ai",
+        "processing",
+        label="Detected Features\nand Tracking Data"
+    )
+    diagram.edge(
+        "processing",
+        "coordinates",
+        label="Synchronized Sensor Data"
+    )
+    diagram.edge(
+        "coordinates",
+        "target",
+        label=(
+            "X/Y/Z + CT or CT/X/Y/Z\n"
+            "Coordinate and Vector Adjustment"
+        )
+    )
+    # Target-control loop
+    diagram.edge(
+        "target",
+        "correction",
+        label="Predicted Target State"
+    )
+    diagram.edge(
+        "correction",
+        "actuators",
+        label="Auto-Aim Correction\nCommands"
+    )
+    diagram.edge(
+        "actuators",
+        "feedback",
+        label="Actual Position /\nOrientation"
+    )
+    # Closed-loop feedback
+    diagram.edge(
+        "feedback",
+        "processing",
+        label="Closed-Loop Update",
+        style="dashed",
+        color="#777777"
+    )
+    diagram.render(output_file, cleanup=True)
+    print(f"Diagram exported to: {output_file}.png")
+    print(f"Date: {DIAGRAM_DATE}")
+    print(f"Version: {VERSION}")
+
+
+if __name__ == "__main__":
+    build_sensor_simulation_diagram()
+```

@@ -1,0 +1,90 @@
+---
+title: "AI Models in The Awesome: Six Analysis Types Explained"
+sidebarTitle: "AI Models"
+description: "The Awesome offers six AI models—trend detection, anomaly detection, correlation, forecasting, segmentation, and plain-English summaries—for any dataset."
+---
+
+The Awesome provides a suite of pre-built AI models that you can apply to your data without any machine learning expertise. Each model is optimized for a specific type of insight — from detecting unusual spikes in your metrics to forecasting next quarter's numbers.
+
+## Available Analysis Types
+
+Choose one or more models when you create an analysis. Models can be combined in a single run, and results are returned together in the same output.
+
+<CardGroup cols={2}>
+  <Card title="Trend Detection" icon="arrow-trend-up">
+    Identifies upward, downward, or cyclical trends in time-series data. Use this model to understand growth trajectories and spot directional shifts before they become obvious.
+  </Card>
+  <Card title="Anomaly Detection" icon="triangle-exclamation">
+    Flags data points that fall outside expected ranges. Ideal for monitoring KPIs and catching problems — or opportunities — early, before they appear in your dashboards.
+  </Card>
+  <Card title="Correlation Analysis" icon="link">
+    Discovers statistical relationships between variables in your dataset. Reveal which factors move together so you can prioritize the levers that actually matter.
+  </Card>
+  <Card title="Forecasting" icon="calendar">
+    Projects future values based on historical patterns. Configure forecast horizon and confidence intervals to plan ahead with a quantified sense of uncertainty.
+  </Card>
+  <Card title="Segmentation" icon="chart-pie">
+    Groups your data into clusters with similar characteristics. Apply this to customer data, product usage, or any dataset where understanding distinct cohorts drives better decisions.
+  </Card>
+  <Card title="Natural Language Summary" icon="file-lines">
+    Produces a human-readable, plain-English summary of the key findings from any analysis run. Share it directly with stakeholders who do not need to see the underlying numbers.
+  </Card>
+</CardGroup>
+
+## How Models Are Applied
+
+<Steps>
+  <Step title="Select a Data Source">
+    When creating a new Analysis, choose an existing data source connection or upload a new file. The Awesome inspects the schema and makes it available for model configuration.
+  </Step>
+  <Step title="Choose Analysis Types">
+    Select one or more analysis types to run against your data. You can combine any models in a single job — for example, run Trend Detection and Natural Language Summary together.
+  </Step>
+  <Step title="Configure Parameters">
+    Expand the **Advanced Settings** panel to adjust model parameters such as forecast horizon, sensitivity threshold, or seasonality detection. Default values work well for most datasets, so this step is optional.
+  </Step>
+  <Step title="Submit and Review Results">
+    Click **Run Analysis**. The Awesome allocates compute, runs each selected model, and returns results in the Analysis view. Download results or connect them to a Workflow for ongoing automation.
+  </Step>
+</Steps>
+
+## Model Parameters
+
+Adjust these parameters in the **Advanced Settings** panel to tune model behavior for your specific dataset.
+
+<AccordionGroup>
+  <Accordion title="Trend Detection Parameters">
+    - **Time Window (days)**: The rolling window over which the model evaluates directional movement. A shorter window surfaces recent micro-trends; a longer window reveals macro-level shifts.
+    - **Minimum Trend Strength Threshold (0–1)**: Set the minimum confidence score a trend must reach before it is reported. Higher values reduce noise; lower values surface weaker signals.
+    - **Seasonality Detection (on/off)**: When enabled, the model identifies and accounts for recurring seasonal patterns — weekly, monthly, or yearly cycles — before calculating the underlying trend.
+  </Accordion>
+  <Accordion title="Anomaly Detection Parameters">
+    - **Sensitivity Level (low / medium / high)**: Controls how aggressively the model flags anomalies. High sensitivity surfaces subtle deviations; low sensitivity reports only significant outliers.
+    - **Baseline Period**: The historical time range used to establish normal behavior. A longer baseline produces a more stable reference point.
+    - **Alert Threshold (standard deviations)**: The number of standard deviations from the baseline mean a data point must exceed before the model marks it as anomalous.
+  </Accordion>
+  <Accordion title="Correlation Analysis Parameters">
+    - **Variables to Compare**: Select the specific columns you want the model to evaluate for statistical relationships. Leave this set to **All Columns** to let the model evaluate every possible pairing automatically.
+    - **Minimum Correlation Strength (0–1)**: Only report correlations whose absolute coefficient meets or exceeds this threshold. Higher values surface only the strongest relationships and reduce noise in the output.
+    - **Correlation Method (Pearson / Spearman / Kendall)**: Choose the statistical method that fits your data. Pearson assumes linear relationships; Spearman and Kendall are rank-based and handle non-linear data better.
+  </Accordion>
+  <Accordion title="Forecasting Parameters">
+    - **Forecast Horizon (days)**: How far into the future the model projects values. Longer horizons increase uncertainty, which is reflected in wider confidence intervals.
+    - **Confidence Interval (%)**: The probability range around the central forecast, typically 80% or 95%. A wider interval conveys more uncertainty; a narrower one conveys higher model confidence.
+    - **Seasonality Mode (additive / multiplicative)**: Choose how seasonal effects are applied. Use additive for data where seasonal fluctuations are roughly constant in size; use multiplicative for data where they scale with the overall level.
+  </Accordion>
+  <Accordion title="Segmentation Parameters">
+    - **Number of Segments**: The target number of clusters the model should identify. If you are unsure, leave this on **Auto** and the model selects the optimal count based on your data's structure.
+    - **Clustering Features**: Select which columns are used to define segments. Narrowing the feature set produces more focused, interpretable clusters.
+    - **Distance Metric (Euclidean / Cosine / Manhattan)**: Determines how similarity is measured between data points. Euclidean works well for continuous numeric data; Cosine is preferred for high-dimensional or text-derived feature sets.
+  </Accordion>
+  <Accordion title="Natural Language Summary Parameters">
+    - **Summary Length (brief / standard / detailed)**: Controls how much prose the model generates. Brief produces two to three sentences; detailed includes supporting statistics and contextual observations.
+    - **Tone (neutral / executive / technical)**: Adjusts the language register. Executive tone omits statistical terminology; technical tone includes coefficient values and confidence levels.
+    - **Findings Limit**: The maximum number of distinct findings included in the summary. Increase this when you need comprehensive coverage; decrease it to keep the output focused on the top insights.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  Start with Natural Language Summary alongside any other model type — it turns raw numbers into plain-English findings your whole team can act on, no data background required.
+</Tip>

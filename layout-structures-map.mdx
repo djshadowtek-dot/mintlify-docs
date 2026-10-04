@@ -1,0 +1,145 @@
+---
+title: "Layout Structures Map: Emergent Chat and Airo Builder"
+sidebarTitle: "Layout Structures Map"
+description: "Side-by-side layout structure map of Emergent Chat and GoDaddy Airo Builder, with a live preview of the Airo-generated site for reference."
+---
+
+Layout Structures Map compares the UI skeleton of two AI-native build surfaces, Emergent Chat and GoDaddy Airo Builder, and links to the live Airo preview so you can see the generated site in context. Use it when wiring similar chat-to-build flows into The Awesome.
+
+<CardGroup cols={3}>
+  <Card title="Emergent Chat" icon="chat" href="https://app.emergent.sh/chat">
+    Chat-first AI builder surface. Left rail sessions, center conversation, right preview.
+  </Card>
+
+  <Card title="Airo Builder" icon="pencil" href="https://airo-builder.godaddy.com/develop/zqbiib3q91?siteId=zqbiib3q91">
+    GoDaddy Airo visual site editor. Left panels for pages/sections, center canvas, right inspector.
+  </Card>
+
+  <Card title="Airo Live Preview" icon="globe" href="https://zqbiib3q91.preview.c35.airoapp.ai/">
+    The generated site rendered from the Airo Builder session above.
+  </Card>
+</CardGroup>
+
+## Emergent Chat — `app.emergent.sh/chat`
+
+Chat-driven agent workspace. The layout centers on a conversation stream with build/preview affordances flanking it.
+
+<Tabs>
+  <Tab title="Regions">
+    - **Top bar** — workspace switcher, project title, share/deploy actions, account menu.
+    - **Left rail** — session list, new chat, pinned/recent conversations, collapsible.
+    - **Center** — message thread (user + agent turns), tool call blocks, streaming output.
+    - **Composer** — bottom-anchored prompt input, attachment/model controls, submit.
+    - **Right pane** — live preview or code/artifact view for the active build, resizable.
+  </Tab>
+
+  <Tab title="Tree">
+    ```text
+    app.emergent.sh/chat
+    ├── TopBar
+    │   ├── WorkspaceSwitcher
+    │   ├── ProjectTitle
+    │   └── Actions (Share · Deploy · Account)
+    ├── LeftRail
+    │   ├── NewChat
+    │   ├── PinnedSessions
+    │   └── RecentSessions
+    ├── CenterColumn
+    │   ├── MessageThread
+    │   │   ├── UserTurn
+    │   │   └── AgentTurn (text · tool calls · artifacts)
+    │   └── Composer (prompt · attachments · model · submit)
+    └── RightPane
+        ├── PreviewTab (live app)
+        └── CodeTab (files · diff · logs)
+    ```
+  </Tab>
+
+  <Tab title="Primary flows">
+    - Prompt → agent plans → tool calls stream in center → artifacts render in right pane.
+    - Switch sessions from left rail without losing right-pane preview state.
+    - Deploy action promotes the current artifact to a shareable URL.
+  </Tab>
+</Tabs>
+
+## Airo Builder — `airo-builder.godaddy.com/develop/{siteId}`
+
+Visual site editor with page/section navigation on the left, canvas in the middle, and a properties inspector on the right. The URL pattern `/develop/{siteId}?siteId={siteId}` scopes every panel to a single site.
+
+<Tabs>
+  <Tab title="Regions">
+    - **Top bar** — site name, device toggle (desktop/tablet/mobile), undo/redo, Preview, Publish.
+    - **Left panel** — Pages list, Sections/Blocks library, Theme/Brand controls, Media.
+    - **Center canvas** — WYSIWYG page render with selection handles and drop zones.
+    - **Right inspector** — properties for the selected element (content, style, layout, visibility).
+    - **Bottom bar** — status, save state, AI assist entry point.
+  </Tab>
+
+  <Tab title="Tree">
+    ```text
+    airo-builder.godaddy.com/develop/{siteId}
+    ├── TopBar
+    │   ├── SiteName
+    │   ├── DeviceToggle (Desktop · Tablet · Mobile)
+    │   ├── HistoryControls (Undo · Redo)
+    │   └── Actions (Preview · Publish)
+    ├── LeftPanel
+    │   ├── Pages
+    │   ├── Sections / Blocks
+    │   ├── Theme & Brand
+    │   └── Media
+    ├── Canvas
+    │   ├── PageFrame
+    │   │   ├── Section
+    │   │   │   └── Block (Hero · Grid · CTA · Form · ...)
+    │   │   └── DropZones
+    │   └── SelectionHandles
+    ├── RightInspector
+    │   ├── Content
+    │   ├── Style (typography · color · spacing)
+    │   ├── Layout (align · size · responsive)
+    │   └── Visibility (breakpoints · conditions)
+    └── BottomBar (SaveState · AIAssist)
+    ```
+  </Tab>
+
+  <Tab title="Primary flows">
+    - Pick a page in Left panel → drop Section/Block into Canvas → edit in Right inspector.
+    - Toggle device size in Top bar to tune responsive rules under Layout → Visibility.
+    - Publish pushes the canvas state to the live preview URL below.
+  </Tab>
+</Tabs>
+
+## Side-by-side comparison
+
+| Region | Emergent Chat | Airo Builder |
+| --- | --- | --- |
+| Primary input | Prompt composer (bottom) | Direct manipulation on canvas |
+| Left rail | Chat sessions | Pages, Sections, Theme, Media |
+| Center | Message + tool call stream | WYSIWYG page canvas |
+| Right pane | Live preview / code artifacts | Element properties inspector |
+| Top bar | Workspace · Project · Deploy | Site · Device · Undo/Redo · Publish |
+| AI surface | The whole product | Assist panel + generative blocks |
+| Deploy target | Shareable app URL | `*.preview.c35.airoapp.ai` then custom domain |
+
+## Live preview: Airo-generated site
+
+The site edited in the Airo Builder session above renders at the preview URL below. Use it to verify how canvas edits map to the deployed layout.
+
+<Card title="Open live preview" icon="globe" href="https://zqbiib3q91.preview.c35.airoapp.ai/">
+  https://zqbiib3q91.preview.c35.airoapp.ai/
+</Card>
+
+<Frame>
+  <iframe
+    src="https://zqbiib3q91.preview.c35.airoapp.ai/"
+    width="100%"
+    height="600"
+    style={{ border: "1px solid #e5e5e5", borderRadius: "8px" }}
+    title="Airo preview: zqbiib3q91"
+  />
+</Frame>
+
+<Note>
+  Emergent Chat and Airo Builder both require authentication, so their internal panels are not directly embeddable. The region maps above reflect the standard, public UI structure of each product.
+</Note>

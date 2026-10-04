@@ -1,0 +1,51 @@
+---
+title: "Understanding Data Innovation on The Awesome Platform"
+sidebarTitle: "Data Innovation"
+description: "Learn how The Awesome defines data innovation: connecting sources, automating analysis, and turning raw data into actionable intelligence for your team."
+---
+
+Data innovation, as embodied by The Awesome, means giving every team — not just data scientists — the ability to extract meaningful insights from their data without manual coding or complex tooling. The platform automates the repetitive, technical work so you can focus on making decisions.
+
+## The Data Innovation Lifecycle
+
+Move from raw data to actionable insight through four repeatable stages.
+
+<Steps>
+  <Step title="Connect">
+    Link your data sources — databases, files, APIs, or cloud storage — to The Awesome. Each connection is saved and reusable across any number of analyses and workflows.
+  </Step>
+  <Step title="Enrich">
+    The platform automatically normalizes and prepares your data. Type inference, deduplication, and schema alignment happen without any manual intervention on your part.
+  </Step>
+  <Step title="Analyze">
+    AI models surface the patterns that matter: trends, anomalies, correlations, and forecasts. You choose the model types; The Awesome handles the computation.
+  </Step>
+  <Step title="Act">
+    Export your results, trigger downstream webhooks, or build custom applications on top of the API. Insights flow to wherever your team already works.
+  </Step>
+</Steps>
+
+## Data Sources
+
+A data source is a saved connection to your raw data. Once you create a connection, The Awesome can read from it on demand or on a schedule — no repeated uploads or credential re-entry required.
+
+The following source types are supported:
+
+| Category | Supported Options |
+|---|---|
+| **File Uploads** | CSV, Excel (`.xlsx`), JSON |
+| **Databases** | PostgreSQL, MySQL, Microsoft SQL Server, BigQuery |
+| **APIs** | Any REST API that returns JSON responses |
+| **Cloud Storage** | Amazon S3, Google Cloud Storage |
+
+Connect a new source from **Data Sources → Add Source** in the sidebar. The Awesome guides you through credentials, connection testing, and optional field mapping in a single setup flow.
+
+## Data Privacy & Security
+
+Your data is encrypted at rest using AES-256 and in transit using TLS 1.2 or higher. Every analysis job runs inside an isolated compute environment — your data is never co-mingled with another customer's workload.
+
+You retain full ownership of all data you bring into The Awesome. The platform never uses your data to train shared or third-party models. Your data is used solely to produce the results you request.
+
+<Note>
+  For compliance requirements — including HIPAA, SOC 2, and GDPR — refer to our Security documentation or contact support for a detailed compliance overview.
+</Note>

@@ -1,0 +1,91 @@
+---
+title: "Running AI-Powered Analysis Jobs on The Awesome Platform"
+sidebarTitle: "Run Analysis"
+description: "Learn how to configure and run AI analysis jobs on The Awesome, including choosing models, setting parameters, and monitoring job progress."
+---
+
+Once a data source is connected, you can run analysis jobs to extract insights. The Awesome supports multiple AI models — from trend detection to natural language summaries — and each job can run multiple models simultaneously.
+
+## Starting an Analysis
+
+<Steps>
+  <Step title="Create a new analysis">
+    Click **New Analysis** from the dashboard or the **Analyses** page.
+  </Step>
+  <Step title="Select a data source">
+    Select a **Data Source** from the dropdown. You can also select a specific date range to analyze a subset of the data.
+  </Step>
+  <Step title="Choose analysis types">
+    Choose one or more **Analysis Types**: Trend Detection, Anomaly Detection, Correlation Analysis, Forecasting, Segmentation, or Natural Language Summary.
+  </Step>
+  <Step title="Tune advanced settings (optional)">
+    Optionally expand **Advanced Settings** to tune model parameters such as sensitivity, forecast horizon, and more.
+  </Step>
+  <Step title="Name and run">
+    Give the analysis a descriptive name and click **Run Analysis**.
+  </Step>
+</Steps>
+
+## Analysis Job States
+
+As your job processes, it moves through a series of states. Use the **Analyses** page to monitor progress in real time.
+
+<AccordionGroup>
+  <Accordion title="Queued">
+    The job is waiting for available compute. No action is required — it will start automatically as soon as resources are free.
+  </Accordion>
+  <Accordion title="Running">
+    The job is actively processing. Progress is shown as a percentage on the job details page.
+  </Accordion>
+  <Accordion title="Completed">
+    Results are ready to view. Click **View Results** on the job card to explore insights, charts, and summaries.
+  </Accordion>
+  <Accordion title="Failed">
+    Something went wrong. Check the error message under the job details — common causes include malformed data or an inaccessible data source. See [Troubleshooting Failed Jobs](#troubleshooting-failed-jobs) below for resolution steps.
+  </Accordion>
+</AccordionGroup>
+
+## Running Analysis via API
+
+You can trigger analysis jobs programmatically using The Awesome REST API. Send a `POST` request with your data source ID and the analysis types you want to run.
+
+<CodeGroup>
+  ```bash Request
+  curl -X POST https://api.the-awesome.ai/v1/analysis/run \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "data_source_id": "ds_abc123",
+      "analysis_types": ["trend_detection", "natural_language_summary"],
+      "name": "Weekly Sales Trends"
+    }'
+  ```
+
+  ```json Response
+  {
+    "id": "job_xyz789",
+    "status": "queued",
+    "data_source_id": "ds_abc123",
+    "analysis_types": ["trend_detection", "natural_language_summary"],
+    "created_at": "2025-01-15T09:00:00Z"
+  }
+  ```
+</CodeGroup>
+
+<Tip>
+  Schedule recurring analyses using Workflows so your team always has fresh insights without manual intervention.
+</Tip>
+
+## Troubleshooting Failed Jobs
+
+<AccordionGroup>
+  <Accordion title="Data format errors">
+    Check that your CSV headers have no special characters and that date columns use ISO 8601 format (`YYYY-MM-DD`). Re-upload a corrected file as a new source if needed.
+  </Accordion>
+  <Accordion title="Insufficient data">
+    Most models need at least 30 data points to produce reliable results. Trend detection and forecasting perform best with 90 or more rows. Expand your date range or source a larger dataset before re-running.
+  </Accordion>
+  <Accordion title="Data source unavailable">
+    Verify the source connection is active under **Data Sources** and re-run the test connection. If the test fails, check your credentials, firewall rules, and network settings.
+  </Accordion>
+</AccordionGroup>

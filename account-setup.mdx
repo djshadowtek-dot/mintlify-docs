@@ -1,0 +1,72 @@
+---
+title: "Account Setup: Profile, Team Members, and API Keys"
+sidebarTitle: "Account Setup"
+description: "Configure your The Awesome account: set your profile, manage team members, control notifications, and generate API keys for integrations."
+---
+
+After creating your account, a few setup steps ensure you get the most out of The Awesome — including personalizing your profile, inviting team members to collaborate, generating API keys for programmatic access, and tuning notification preferences so you stay informed without being overwhelmed.
+
+## Profile settings
+
+Open **Settings → Profile** in the dashboard to update your personal details at any time. From your profile page you can configure:
+
+- **Display name** — the name shown to teammates and in exported reports
+- **Email address** — the address used for login and all platform notifications
+- **Timezone** — ensures analysis schedules and timestamps display in your local time
+- **Language preference** — sets the language for the dashboard interface and generated reports
+
+## Team management
+
+Invite colleagues to your workspace from **Settings → Team** so they can view results, run analyses, or manage the account depending on the role you assign.
+
+<Steps>
+  <Step title="Send an Invitation">
+    Click **Invite Member** and enter the email address of the person you want to add.
+  </Step>
+  <Step title="Choose a Role">
+    Select the appropriate role for that team member:
+
+    - **Viewer** — read-only access to results and dashboards
+    - **Analyst** — can create data sources and run analyses, but cannot change account or billing settings
+    - **Admin** — full access to all features including billing, team management, and API keys
+  </Step>
+  <Step title="Await Acceptance">
+    The invitee receives an email with a link to accept the invitation. Once they accept and complete their own account setup, they appear in your team list under **Settings → Team**.
+  </Step>
+</Steps>
+
+## API keys
+
+Generate API keys to authenticate programmatic requests to The Awesome REST API from your own applications, scripts, or CI/CD pipelines.
+
+<Warning>
+  API keys grant full access to your account's data. Rotate keys regularly and revoke any that are no longer in use to minimize exposure.
+</Warning>
+
+<Steps>
+  <Step title="Open API Keys settings">
+    Go to **Settings → API Keys** in the dashboard.
+  </Step>
+  <Step title="Generate a new key">
+    Click **Generate New Key** and give it a descriptive name that identifies its purpose — for example, `production-integration` or `ci-pipeline`. A clear name makes it easy to audit and revoke keys later.
+  </Step>
+  <Step title="Copy the key immediately">
+    Copy the key as soon as it appears — it is shown only once and cannot be retrieved after you close the dialog. Store it in a secrets manager or environment variable such as `AWESOME_API_KEY`.
+  </Step>
+  <Step title="Revoke a key when needed">
+    To revoke a key, find it in the **API Keys** list and click the **Revoke** button next to it. Revocation takes effect immediately, so any application still using that key will lose access at once.
+  </Step>
+</Steps>
+
+## Notification preferences
+
+Keep up to date with your analyses without unnecessary noise. From **Settings → Notifications** you can enable or disable email alerts for each of the following events:
+
+- **Analysis completion** — receive an email when an analysis job finishes successfully
+- **Analysis failure** — be alerted immediately if a job encounters an error so you can investigate
+- **Data source connection errors** — get notified when a scheduled connection test fails for a saved data source
+- **Weekly digest** — receive a summary of all analyses run, results generated, and key insights from the past week
+
+<Note>
+  Enterprise plans include SSO (SAML 2.0), audit logs, and advanced role-based access control. Contact [support](mailto:support@the-awesome.ai) to enable these features for your organization.
+</Note>

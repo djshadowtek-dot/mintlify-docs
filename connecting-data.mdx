@@ -1,0 +1,110 @@
+---
+title: "Connecting Your Data Sources to The Awesome Platform"
+sidebarTitle: "Connect Data"
+description: "Step-by-step guide to connecting CSV files, databases, REST APIs, and cloud storage buckets as data sources in The Awesome platform."
+---
+
+Before running any analysis, you need to connect at least one data source. The Awesome supports a range of source types — from simple file uploads to live database connections — so you can bring in exactly the data you need.
+
+<Tabs>
+  <Tab title="CSV / File Upload">
+    <Steps>
+      <Step title="Open the Add Source dialog">
+        Go to **Data Sources → Add Source** and select **File Upload**.
+      </Step>
+      <Step title="Select your file">
+        Click **Choose File** and select your CSV, Excel (.xlsx), or JSON file (max 500 MB).
+      </Step>
+      <Step title="Review the schema">
+        The Awesome auto-detects column types. Review the schema preview and correct any misdetections.
+      </Step>
+      <Step title="Save the source">
+        Give the source a name and click **Save**.
+      </Step>
+    </Steps>
+
+    <Tip>
+      Ensure the first row of your CSV is a header row with unique column names.
+    </Tip>
+  </Tab>
+
+  <Tab title="PostgreSQL / MySQL">
+    <Steps>
+      <Step title="Choose the database type">
+        Select **Database** as the source type, then choose **PostgreSQL** or **MySQL**.
+      </Step>
+      <Step title="Enter connection details">
+        Enter your connection details: Host, Port, Database name, Username, and Password.
+      </Step>
+      <Step title="Configure SSH tunnel (optional)">
+        Optionally, enter an SSH tunnel host if your database is behind a firewall.
+      </Step>
+      <Step title="Test the connection">
+        Click **Test Connection** — a green checkmark confirms a successful connection.
+      </Step>
+      <Step title="Select tables and save">
+        Choose which tables or views to include, then click **Save**.
+      </Step>
+    </Steps>
+
+    <Note>
+      Whitelist the IP range `34.102.0.0/16` in your database firewall rules to allow The Awesome to connect.
+    </Note>
+  </Tab>
+
+  <Tab title="REST API">
+    <Steps>
+      <Step title="Select the source type">
+        Select **REST API** as the source type.
+      </Step>
+      <Step title="Enter endpoint details">
+        Enter the endpoint URL, HTTP method (GET or POST), and any required headers (e.g., `Authorization: Bearer YOUR_TOKEN`).
+      </Step>
+      <Step title="Set the polling interval">
+        Configure the polling interval — how often The Awesome should fetch fresh data (minimum: 15 minutes).
+      </Step>
+      <Step title="Map the response path">
+        Map the JSON response path to the data array (e.g., `data.results`).
+      </Step>
+      <Step title="Test and save">
+        Click **Test & Save**.
+      </Step>
+    </Steps>
+
+    <Tip>
+      Use the **Preview Response** button to inspect the raw JSON returned by your API before mapping it.
+    </Tip>
+  </Tab>
+
+  <Tab title="Amazon S3">
+    <Steps>
+      <Step title="Select the source type">
+        Select **Amazon S3** as the source type.
+      </Step>
+      <Step title="Enter bucket credentials">
+        Enter your **Bucket Name**, **Region**, **Access Key ID**, and **Secret Access Key**.
+      </Step>
+      <Step title="Specify the file path">
+        Specify the file path or prefix within the bucket (e.g., `reports/2025/`).
+      </Step>
+      <Step title="Choose the file format">
+        Choose the file format: CSV, JSON, or Parquet.
+      </Step>
+      <Step title="Test and save">
+        Click **Test Connection**, then **Save**.
+      </Step>
+    </Steps>
+
+    <Warning>
+      The IAM user must have `s3:GetObject` and `s3:ListBucket` permissions on the target bucket.
+    </Warning>
+  </Tab>
+</Tabs>
+
+## Managing Data Sources
+
+Once your sources are connected, you can manage them at any time from the **Data Sources** page. Keep the following in mind as your data evolves:
+
+- Refresh a source manually by clicking **Refresh** on the Data Sources page.
+- Edit connection details at any time without re-creating analyses that use the source.
+- Delete a source — note this removes the source but does not delete historical analysis results.

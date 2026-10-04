@@ -1,0 +1,88 @@
+{
+  "projectType": "ai-ml",
+  "projectName": "The Awesome",
+  "projectDescription": "An AI-powered data innovation platform that simplifies how teams discover, analyze, and act on data insights.",
+  "theme": "willow",
+  "primaryColor": "#969696",
+  "lightColor": "#161616",
+  "darkColor": "#c6c6c6",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "account-setup"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/data-innovation",
+              "concepts/ai-models",
+              "concepts/workflows"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/connecting-data",
+              "guides/running-analysis",
+              "guides/exporting-results",
+              "guides/ai-trends"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "configuration/settings",
+              "configuration/integrations"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api/overview",
+              "api/authentication"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api/data-sources",
+              "api/analysis",
+              "api/results",
+              "api/webhooks"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "AI-powered data analysis and discovery",
+    "Simplified data innovation workflows",
+    "Automated insight generation",
+    "Data source integrations",
+    "Real-time analysis results",
+    "Webhook and API access"
+  ],
+  "publicApiSurface": [
+    "GET /data-sources",
+    "POST /data-sources",
+    "POST /analysis/run",
+    "GET /analysis/{id}/results",
+    "GET /results",
+    "POST /webhooks",
+    "DELETE /webhooks/{id}"
+  ]
+}

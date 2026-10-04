@@ -1,0 +1,128 @@
+---
+title: "Exporting and Sharing Your Analysis Results in The Awesome"
+sidebarTitle: "Export Results"
+description: "Download analysis results as PDF, CSV, or JSON, share live dashboards, or push results to destinations like Slack, S3, and webhooks from The Awesome."
+---
+
+After an analysis completes, The Awesome gives you multiple ways to use the results — from one-click downloads to automated delivery via webhook or cloud storage. This guide covers each export option and when to use it.
+
+## Manual Export
+
+Download a snapshot of your results at any time directly from the analysis view.
+
+<Steps>
+  <Step title="Open the results view">
+    Open the analysis from the **Analyses** page and click **View Results**.
+  </Step>
+  <Step title="Open the export menu">
+    Click **Export** in the top-right corner.
+  </Step>
+  <Step title="Choose a format">
+    Select one of the available formats:
+
+    - **PDF Report**: A formatted, shareable report with charts and the natural language summary — ideal for presenting to stakeholders.
+    - **CSV**: Raw insight data in tabular format, suitable for further analysis in Excel or a BI tool.
+    - **JSON**: Structured results data for programmatic consumption or downstream integrations.
+  </Step>
+  <Step title="Download the file">
+    Click **Download**. Your file will be prepared and saved to your browser's default download location.
+  </Step>
+</Steps>
+
+## Sharing a Live Dashboard
+
+Each analysis has a shareable link that lets you give others a read-only view of the results without requiring them to log in. To generate one, open the analysis and toggle **Share → Public Link**. Copy the URL and share it via email, Slack, or any other channel.
+
+<Warning>
+  Anyone with the link can view the results. Only share links for data that is appropriate to make accessible externally.
+</Warning>
+
+## Automated Delivery
+
+Connect The Awesome to your existing tools and workflows to deliver results automatically whenever an analysis completes. Configure delivery options under **Workflow Actions**.
+
+<Tabs>
+  <Tab title="Slack">
+    <Steps>
+      <Step title="Select Slack Notification">
+        In **Workflow Actions**, select **Slack Notification**.
+      </Step>
+      <Step title="Authorize and choose a channel">
+        Authorize The Awesome to your Slack workspace and choose the channel where summaries should be posted.
+      </Step>
+      <Step title="Save">
+        Click **Save**. The results summary is posted automatically whenever the analysis completes.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Email">
+    <Steps>
+      <Step title="Select Email Report">
+        In **Workflow Actions**, select **Email Report**.
+      </Step>
+      <Step title="Add recipients">
+        Enter one or more recipient email addresses.
+      </Step>
+      <Step title="Choose the delivery format">
+        Choose the delivery format — **PDF** for a formatted report or **Inline Summary** for a brief digest directly in the email body.
+      </Step>
+      <Step title="Save">
+        Click **Save**. Recipients will receive the report after each completed analysis run.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Amazon S3">
+    <Steps>
+      <Step title="Select Save to S3">
+        In **Workflow Actions**, select **Save to S3**.
+      </Step>
+      <Step title="Enter bucket details">
+        Provide your bucket name, prefix path, and IAM credentials.
+      </Step>
+      <Step title="Save">
+        Click **Save**. Results are uploaded as JSON after each analysis run.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Webhook">
+    <Steps>
+      <Step title="Select Webhook">
+        In **Workflow Actions**, select **Webhook**.
+      </Step>
+      <Step title="Enter the destination URL">
+        Enter the destination URL. The Awesome sends a `POST` request with the full results payload to this URL.
+      </Step>
+      <Step title="Save">
+        Click **Save**. See the Webhooks API reference for the complete payload schema.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Fetching Results via API
+
+Retrieve results programmatically by calling the `/v1/results` endpoint. This is useful for pulling insights into your own applications or data pipelines.
+
+<CodeGroup>
+  ```bash Request
+  curl https://api.the-awesome.ai/v1/results \
+    -H "Authorization: Bearer YOUR_API_KEY"
+  ```
+
+  ```json Response
+  {
+    "results": [
+      {
+        "id": "res_001",
+        "analysis_id": "job_xyz789",
+        "type": "trend_detection",
+        "summary": "Upward trend detected with 87% confidence over the last 30 days.",
+        "created_at": "2025-01-15T09:45:00Z"
+      }
+    ]
+  }
+  ```
+</CodeGroup>

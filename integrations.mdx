@@ -1,0 +1,147 @@
+---
+title: "Connecting Third-Party Integrations to The Awesome"
+sidebarTitle: "Integrations"
+description: "Connect The Awesome to Slack, Google Sheets, Zapier, and other tools to automate workflows and push analysis results to where your team already works."
+---
+
+The Awesome integrates with the tools your team already uses, letting you route insights to Slack, sync data from Google Sheets, automate workflows with Zapier, and more. Integrations are configured from **Settings → Integrations**.
+
+## Available Integrations
+
+<CardGroup cols={2}>
+  <Card title="Slack" icon="slack">
+    Send analysis results and workflow notifications directly to Slack channels.
+  </Card>
+  <Card title="Google Sheets" icon="table">
+    Import data from Google Sheets as a live data source or export results back to a sheet.
+  </Card>
+  <Card title="Zapier" icon="bolt">
+    Trigger Zapier zaps on analysis completion, connecting The Awesome to 5,000+ apps.
+  </Card>
+  <Card title="Microsoft Teams" icon="microsoft">
+    Deliver analysis summaries and alerts to Teams channels.
+  </Card>
+  <Card title="Amazon S3" icon="cloud">
+    Automatically push results to S3 buckets for archival or downstream processing.
+  </Card>
+  <Card title="Webhooks" icon="plug">
+    Send structured POST payloads to any URL when analysis completes.
+  </Card>
+</CardGroup>
+
+## Integration Setup
+
+Follow the step-by-step walkthrough for each integration below. Click any integration name to expand its setup instructions.
+
+<AccordionGroup>
+  <Accordion title="Set Up Slack Integration">
+    <Steps>
+      <Step title="Open the Slack integration page">
+        Navigate to **Settings → Integrations → Slack**.
+      </Step>
+      <Step title="Connect to Slack">
+        Click **Connect** to begin the Slack OAuth flow. You will be redirected to Slack to authorize The Awesome.
+      </Step>
+      <Step title="Authorize the app">
+        Review the requested permissions in the Slack OAuth screen and click **Allow**.
+      </Step>
+      <Step title="Choose a default channel">
+        After authorization, select the default Slack channel where notifications will be posted.
+      </Step>
+      <Step title="Save your settings">
+        Click **Save**. The Awesome will send a confirmation message to the selected channel to verify the connection.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Set Up Google Sheets">
+    <Steps>
+      <Step title="Open the Google Sheets integration page">
+        Navigate to **Settings → Integrations → Google Sheets**.
+      </Step>
+      <Step title="Connect your Google account">
+        Click **Connect** and sign in with the Google account that has access to the sheets you want to use.
+      </Step>
+      <Step title="Authorize access">
+        Grant The Awesome the requested permissions to read and write Google Sheets on your behalf.
+      </Step>
+      <Step title="Select a sheet and tab">
+        Choose the Google Sheet and specific tab you want to import data from.
+      </Step>
+      <Step title="Configure sync frequency">
+        Set how often The Awesome should sync data from your sheet: **Manual**, **Hourly**, or **Daily**.
+      </Step>
+      <Step title="Save your settings">
+        Click **Save** to activate the integration.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Set Up Zapier">
+    <Steps>
+      <Step title="Open the Zapier integration page">
+        Navigate to **Settings → Integrations → Zapier**.
+      </Step>
+      <Step title="Copy your API key">
+        Copy the **Zapier API Key** displayed on the page.
+      </Step>
+      <Step title="Create a new Zap">
+        Open Zapier and create a new Zap. Search for **The Awesome** and select it as the trigger app.
+      </Step>
+      <Step title="Paste your API key">
+        When prompted, paste the API key you copied from The Awesome to authenticate the connection.
+      </Step>
+      <Step title="Choose a trigger event">
+        Select the event that will fire your Zap: **Analysis Completed**, **Analysis Failed**, or **New Result**.
+      </Step>
+      <Step title="Configure your Zap actions">
+        Add one or more actions to your Zap — for example, sending an email, creating a task, or updating a spreadsheet — then publish the Zap.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Configure a Webhook">
+    <Steps>
+      <Step title="Open the Webhooks integration page">
+        Navigate to **Settings → Integrations → Webhooks**.
+      </Step>
+      <Step title="Add a new webhook">
+        Click **Add Webhook** to open the webhook configuration form.
+      </Step>
+      <Step title="Enter the destination URL">
+        Type or paste the endpoint URL where The Awesome should send POST payloads.
+      </Step>
+      <Step title="Add a signing secret (optional)">
+        Optionally enter a secret to enable payload signature verification. The Awesome signs all payloads using **HMAC-SHA256** and includes the signature in the `X-Awesome-Signature` header.
+      </Step>
+      <Step title="Subscribe to events">
+        Choose which events should trigger this webhook, such as **Analysis Completed**, **Analysis Failed**, or **New Result**.
+      </Step>
+      <Step title="Save the webhook">
+        Click **Save**. The Awesome will immediately send a test ping to verify that your endpoint is reachable.
+      </Step>
+    </Steps>
+
+    <Tip>
+      Verify the `X-Awesome-Signature` header in your webhook handler to confirm payloads originate from The Awesome.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting Integrations
+
+If an integration stops working or events are not being delivered, use the guides below to diagnose and resolve the most common issues.
+
+<AccordionGroup>
+  <Accordion title="Slack messages not appearing">
+    Re-authorize the Slack integration from **Settings → Integrations → Slack** to refresh the connection. Also confirm that The Awesome bot has been added to the target channel — invite it by running `/invite @TheAwesome` inside the channel.
+  </Accordion>
+
+  <Accordion title="Google Sheets sync failing">
+    Confirm that the connected Google account still has access to the sheet in question. If you recently revoked permissions or changed account settings, re-connect the integration from **Settings → Integrations → Google Sheets** and reauthorize access.
+  </Accordion>
+
+  <Accordion title="Webhook not receiving events">
+    Verify that your endpoint returns an **HTTP 200** status code within **5 seconds** of receiving a request. If the response times out or returns a non-2xx status, The Awesome will retry the delivery up to **3 times** using exponential backoff before marking the delivery as failed.
+  </Accordion>
+</AccordionGroup>

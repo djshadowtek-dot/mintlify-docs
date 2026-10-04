@@ -1,0 +1,158 @@
+---
+title: "Analysis API — Trigger and Monitor AI Analysis Jobs"
+sidebarTitle: "Analysis"
+description: "REST API reference for The Awesome Analysis endpoints: run new analysis jobs, check job status, and retrieve analysis details programmatically."
+---
+
+The Analysis API lets you programmatically trigger AI analysis jobs on your connected data sources and poll for their status. Use it to integrate data insights directly into your application's backend or CI/CD pipeline.
+
+## Start an Analysis Job
+
+### `POST /analysis/run`
+
+Submit a new analysis job against a connected data source. The job is queued immediately and processed asynchronously — use [GET /analysis/](#get-job-status){id} or a [webhook](/api/webhooks) to track completion.
+
+<ParamField body="data_source_id" type="string" required>
+  The ID of the data source to analyse — for example, `ds_abc123`. The source must have a `connected` status before you can run a job against it.
+</ParamField>
+
+<ParamField body="analysis_types" type="array of strings" required>
+  One or more analysis types to run. You can combine multiple types in a single job. Accepted values:
+
+  - `trend_detection` — Identify upward, downward, or seasonal trends in your data.
+  - `anomaly_detection` — Surface outliers and unexpected spikes or drops.
+  - `correlation_analysis` — Discover relationships between variables in your dataset.
+  - `forecasting` — Generate forward-looking predictions based on historical patterns.
+  - `segmentation` — Group your data into meaningful clusters or cohorts.
+  - `natural_language_summary` — Produce a plain-English narrative of the key findings.
+</ParamField>
+
+<ParamField body="name" type="string">
+  An optional human-readable label for the job — for example, `Q1 Sales Trend`. If omitted, The Awesome generates a name automatically.
+</ParamField>
+
+<ParamField body="date_range" type="object">
+  An optional date range to scope the analysis. Provide `start` and `end` as `YYYY-MM-DD` strings — for example, `{ "start": "2025-01-01", "end": "2025-01-31" }`. If omitted, The Awesome analyses all available data in the source.
+</ParamField>
+
+```bash
+curl -X POST https://api.the-awesome.ai/v1/analysis/run \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "data_source_id": "ds_abc123",
+    "analysis_types": ["trend_detection", "natural_language_summary"],
+    "name": "Q1 Sales Trend"
+  }'
+```
+
+**Response**
+
+```json
+{
+  "id": "job_xyz789",
+  "status": "queued",
+  "data_source_id": "ds_abc123",
+  "analysis_types": ["trend_detection", "natural_language_summary"],
+  "name": "Q1 Sales Trend",
+  "created_at": "2025-01-15T09:00:00Z"
+}
+```
+
+The response includes the job `id` — store this to poll for status or match against incoming webhook events.
+
+---
+
+## Get Job Status
+
+### `GET /analysis/{id}`
+
+Retrieve the current status and details of an analysis job.
+
+```bash
+curl https://api.the-awesome.ai/v1/analysis/job_xyz789 \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response — completed job**
+
+```json
+{
+  "id": "job_xyz789",
+  "status": "completed",
+  "data_source_id": "ds_abc123",
+  "analysis_types": ["trend_detection", "natural_language_summary"],
+  "name": "Q1 Sales Trend",
+  "created_at": "2025-01-15T09:00:00Z",
+  "completed_at": "2025-01-15T09:01:32Z",
+  "result_ids": ["res_001", "res_002"]
+}
+```
+
+<Note>
+  Poll this endpoint every 5–10 seconds until `status` is `completed` or `failed`. For a more efficient approach, configure a [webhook](/api/webhooks) to receive a push notification the moment the job finishes — this eliminates polling entirely and reduces API calls.
+</Note>
+
+**Job status values**
+
+| Status      | Meaning                                                          |
+|-------------|------------------------------------------------------------------|
+| `queued`    | The job is waiting to be picked up by a worker.                  |
+| `running`   | The job is actively being processed.                             |
+| `completed` | All analysis types finished successfully. Results are available. |
+| `failed`    | The job encountered an unrecoverable error. Check `error_message` in the response for details. |
+
+<Tip>
+  When a job `status` is `completed`, use the `result_ids` array to fetch individual results from the [Results API](/api/results).
+</Tip>
+
+---
+
+## Get Results for a Job
+
+### `GET /analysis/{id}/results`
+
+Retrieve all results produced by a specific analysis job in a single request. This is a convenient alternative to listing all results via `GET /results?analysis_id=<id>` when you already have the job ID.
+
+<ParamField path="id" type="string" required>
+  The unique identifier of the analysis job — for example, `job_xyz789`. Obtain this from the `POST /analysis/run` response or from a webhook event payload.
+</ParamField>
+
+```bash
+curl https://api.the-awesome.ai/v1/analysis/job_xyz789/results \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response**
+
+```json
+{
+  "results": [
+    {
+      "id": "res_001",
+      "analysis_id": "job_xyz789",
+      "type": "trend_detection",
+      "summary": "Upward trend detected with 87% confidence over the last 30 days.",
+      "data": {
+        "trend_direction": "upward",
+        "confidence": 0.87,
+        "start_value": 1200,
+        "end_value": 1850
+      },
+      "created_at": "2025-01-15T09:01:32Z"
+    },
+    {
+      "id": "res_002",
+      "analysis_id": "job_xyz789",
+      "type": "natural_language_summary",
+      "summary": "Sales grew steadily throughout January, reaching a peak on the 22nd.",
+      "data": {
+        "narrative": "Sales grew steadily throughout January, reaching a peak on the 22nd before a slight correction at month-end."
+      },
+      "created_at": "2025-01-15T09:01:32Z"
+    }
+  ]
+}
+```
+
+This endpoint returns all results for the job without pagination. For large jobs spanning many analysis types, use [`GET /results`](/api/results) with the `analysis_id` query parameter to paginate through results instead.

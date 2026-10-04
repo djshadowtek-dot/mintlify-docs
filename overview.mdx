@@ -1,0 +1,114 @@
+---
+title: "The Awesome REST API Reference — Overview and Errors"
+sidebarTitle: "Overview"
+description: "The Awesome REST API lets you connect data sources, trigger analysis jobs, retrieve results, and configure webhooks programmatically from any language."
+---
+
+The Awesome exposes a REST API so you can integrate data innovation workflows directly into your own applications, scripts, and pipelines. Every operation available in the dashboard is also available via the API.
+
+## Base URL
+
+All API requests target the following base URL:
+
+```
+https://api.the-awesome.ai/v1
+```
+
+## Authentication
+
+All requests must include an API key in the `Authorization` header. See [Authentication](/api/authentication) for details on obtaining and using API keys.
+
+## Rate Limits
+
+The Awesome enforces per-minute rate limits based on your plan. When you exceed the limit, the API returns HTTP `429 Too Many Requests`.
+
+| Plan       | Requests per Minute |
+|------------|---------------------|
+| Free       | 60                  |
+| Pro        | 300                 |
+| Enterprise | Custom              |
+
+Every response includes the following rate limit headers so you can track your usage:
+
+| Header                  | Description                                              |
+|-------------------------|----------------------------------------------------------|
+| `X-RateLimit-Limit`     | Maximum requests allowed in the current window           |
+| `X-RateLimit-Remaining` | Requests remaining in the current window                 |
+| `X-RateLimit-Reset`     | Unix timestamp (seconds) when the window resets          |
+
+<Note>
+  When you receive a `429` response, implement exponential backoff before retrying. Start with a 1-second delay and double it on each subsequent attempt (e.g., 1 s → 2 s → 4 s → 8 s), up to a reasonable maximum. Always read `X-RateLimit-Reset` to know exactly when your window clears.
+</Note>
+
+## Request & Response Format
+
+All requests and responses use JSON. Set the `Content-Type: application/json` header on any request that includes a body.
+
+- **Dates** are returned as [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) strings — for example, `2025-01-15T09:00:00Z`.
+- **IDs** use a type-prefixed string format to make them instantly recognisable at a glance:
+
+| Resource     | Prefix | Example        |
+|--------------|--------|----------------|
+| Data Sources | `ds_`  | `ds_abc123`    |
+| Analysis Jobs| `job_` | `job_xyz789`   |
+| Results      | `res_` | `res_001`      |
+| Webhooks     | `wh_`  | `wh_123abc`    |
+
+## Error Codes
+
+The Awesome uses standard HTTP status codes to indicate success or failure. All error responses share the same JSON shape.
+
+<AccordionGroup>
+  <Accordion title="400 — Bad Request">
+    A required parameter is missing or a provided value is invalid. Check the `message` field in the error response for details on which parameter failed validation.
+  </Accordion>
+  <Accordion title="401 — Unauthorized">
+    Your API key is missing or invalid. Verify that you are passing the correct key in the `Authorization: Bearer` header and that the key has not been revoked.
+  </Accordion>
+  <Accordion title="403 — Forbidden">
+    Your API key is valid, but your current plan does not permit this action. Upgrade your plan or contact support if you believe this is an error.
+  </Accordion>
+  <Accordion title="404 — Not Found">
+    The requested resource does not exist. Confirm that the ID in your request path is correct and belongs to your account.
+  </Accordion>
+  <Accordion title="422 — Unprocessable Entity">
+    The request was well-formed but failed data validation. For example, referencing a data source that is not yet connected. Check the `message` field for guidance.
+  </Accordion>
+  <Accordion title="429 — Too Many Requests">
+    You have exceeded your plan's rate limit. Wait for the window to reset (see `X-RateLimit-Reset`) and retry with exponential backoff.
+  </Accordion>
+  <Accordion title="500 — Internal Server Error">
+    Something went wrong on The Awesome's end. The issue is logged automatically. Retry your request after a brief moment; if the problem persists, contact support.
+  </Accordion>
+</AccordionGroup>
+
+All error responses use this structure:
+
+```json
+{
+  "error": {
+    "code": "unauthorized",
+    "message": "Invalid API key. Check your key in Settings → API Keys.",
+    "status": 401
+  }
+}
+```
+
+## Available Resources
+
+Explore the individual resource references to see all available endpoints, parameters, and response schemas.
+
+<CardGroup cols={2}>
+  <Card title="Data Sources" icon="database" href="/api/data-sources">
+    Create, list, and delete the data connections that power your analysis jobs.
+  </Card>
+  <Card title="Analysis" icon="play" href="/api/analysis">
+    Trigger AI analysis jobs and monitor their status programmatically.
+  </Card>
+  <Card title="Results" icon="chart-bar" href="/api/results">
+    Retrieve structured findings and plain-language summaries from completed jobs.
+  </Card>
+  <Card title="Webhooks" icon="plug" href="/api/webhooks">
+    Register endpoints to receive real-time push notifications for key events.
+  </Card>
+</CardGroup>

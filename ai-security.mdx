@@ -1,0 +1,71 @@
+---
+title: "AI Security: Adversarial Risks and Modern Defensive Frameworks"
+sidebarTitle: "AI Security"
+description: "Tactical overview of AI-driven adversarial risks, prompt injection vulnerabilities, cloud exploitation vectors, and the defensive frameworks that stop them."
+---
+
+Autonomous AI agents introduce new attack surfaces that traditional application security models do not cover. This page summarizes the adversarial risks, prompt injection vulnerabilities, and cloud deployment security strategies every team running AI agents in production should understand and defend against.
+
+## 1. Cloned sites and indirect prompt injection
+
+Adversaries mimic trusted web environments (such as financial portals) to serve hidden instructions embedded in the site's layout or underlying markup. Autonomous AI assistants reading these pages fail to distinguish systemic commands from raw web content data.
+
+<CardGroup cols={3}>
+  <Card title="Threat vector" icon="link-slash">
+    Cloned sites and lookalike portals serve hidden instructions in HTML, ARIA labels, hidden text, or metadata.
+  </Card>
+  <Card title="AI vulnerability" icon="brain">
+    Agents cannot reliably separate trusted system instructions from untrusted page content pulled in at runtime.
+  </Card>
+  <Card title="Impact" icon="triangle-exclamation">
+    Agents can be coerced into unauthorized data exfiltration or fraudulent balance movements while showing a benign frontend to the user.
+  </Card>
+</CardGroup>
+
+<Warning>
+  Any tool call an agent makes after reading external web content should be treated as untrusted until validated by an out-of-band control.
+</Warning>
+
+## 2. Cloud environment exploitation by AI
+
+Cloud-connected autonomous workflows create new targets. Attackers now use AI to attack AI-driven infrastructure at scale.
+
+<Steps>
+  <Step title="Automated mapping">
+    Attackers run automated scripts to inventory public endpoints, infrastructure layouts, and permission structures, occasionally orchestrating "shadow infrastructures" using machine-generated Infrastructure-as-Code setups.
+  </Step>
+  <Step title="Over-permissioned agents">
+    Internal development agents with broad IAM scopes are prime targets. If an agent processes poisoned code or data, an injection payload can trick it into misconfiguring firewalls or natively expanding account authorizations.
+  </Step>
+  <Step title="Native privilege abuse">
+    The exploit uses the agent's own legitimate credentials, so the malicious changes look like normal automation events to the audit log.
+  </Step>
+</Steps>
+
+## 3. Modern defensive frameworks
+
+Three layers of controls, applied together, neutralize the majority of current AI attack patterns.
+
+<CardGroup cols={3}>
+  <Card title="Human-in-the-Loop (HITL)" icon="user-shield">
+    Critical operations, particularly financial mutations and structural infrastructure updates, must enforce mandatory biometric or human validation rather than fully autonomous execution.
+  </Card>
+  <Card title="Zero Trust Architecture" icon="shield-halved">
+    Enforce continuous re-authentication for every micro-operation. Even if a component of the AI framework is temporarily tricked, malicious payloads cannot move laterally.
+  </Card>
+  <Card title="Delimitation & pre-screening" icon="filter">
+    Implement structural separation rules and route untrusted visual or text objects through lightweight classification filters before they reach high-level model engines.
+  </Card>
+</CardGroup>
+
+### Recommended controls
+
+- **Isolate untrusted content**: sandbox any web page, document, or user upload before an agent reads it. Never let raw external content share a context window with system instructions.
+- **Scoped credentials**: issue every agent short-lived, least-privileged tokens. Rotate them on every task.
+- **Confirmation on side effects**: any state-changing tool call (payments, IAM changes, deletes, deploys) requires an explicit second confirmation from a human or a separate policy engine.
+- **Content classifiers upstream**: run cheap prompt-injection classifiers before content reaches the primary model.
+- **Behavioral monitoring**: alert on agent behavior that deviates from historical patterns, especially sudden expansions of tool use or permission scope.
+
+<Note>
+  Want to unpack specific mitigation patterns or deep-dive into any particular layer of this threat matrix? Continue with the [Briefings](/guides/briefings) feed for live incident intelligence, or open a Contact request from the [Introduction](/introduction).
+</Note>

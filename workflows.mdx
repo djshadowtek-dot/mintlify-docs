@@ -1,0 +1,63 @@
+---
+title: "Automating Recurring Analysis with The Awesome Workflows"
+sidebarTitle: "Workflows"
+description: "Learn how Workflows in The Awesome automate recurring analysis jobs, send results to destinations, and trigger webhooks when insights are ready."
+---
+
+Workflows let you automate the full data innovation lifecycle on a schedule or in response to events. Instead of manually triggering analysis each time, a Workflow runs your analysis jobs automatically and routes results to wherever they are needed.
+
+## Workflow Components
+
+Every Workflow is built from three building blocks. Combine them to describe exactly what should run, when, and where results go.
+
+- **Trigger**: What starts the workflow. Choose from a scheduled (cron-based) trigger, a data source update trigger (runs whenever a connected source refreshes), or an API/webhook call from an external system.
+- **Steps**: One or more analysis jobs to execute. Run steps in sequence to chain model outputs, or configure steps to run in parallel to reduce total job time.
+- **Actions**: What happens after analysis completes. Send an email report, post a Slack message, upload results to S3, call a webhook, or expose results through the API for downstream consumers.
+
+## Creating a Workflow
+
+<Steps>
+  <Step title="Name Your Workflow">
+    Navigate to **Workflows → New Workflow** in the sidebar. Enter a descriptive name so you and your team can identify the workflow's purpose at a glance.
+  </Step>
+  <Step title="Choose a Trigger">
+    Select **Schedule** and enter a cron expression — for example, `0 8 * * 1` runs the workflow every Monday at 8:00 AM. Alternatively, select **On Data Update** to fire the workflow automatically whenever a connected data source refreshes with new data.
+  </Step>
+  <Step title="Add Steps">
+    Click **Add Step**, select a data source, and choose one or more analysis types to run. Repeat this step to build a multi-step pipeline. Drag steps to reorder them or mark them as parallel to run simultaneously.
+  </Step>
+  <Step title="Add Actions">
+    Click **Add Action** and choose where results are sent after each step or after the full workflow completes. Available actions include email report, Slack message, webhook POST, and save to S3.
+  </Step>
+  <Step title="Activate the Workflow">
+    Click **Activate Workflow**. The workflow moves to **Active** status and begins running on the trigger you defined. You can pause or edit it at any time from the Workflows list.
+  </Step>
+</Steps>
+
+## Schedule Syntax
+
+Workflow schedules use standard five-field cron syntax: `minute hour day-of-month month day-of-week`. Reference the examples below when configuring a scheduled trigger.
+
+```text
+0 8 * * 1     # Every Monday at 8:00 AM
+0 */6 * * *   # Every 6 hours
+0 0 1 * *     # First day of every month
+```
+
+Use a cron expression builder (such as [crontab.guru](https://crontab.guru)) if you need to construct a less common schedule — the syntax is fully compatible.
+
+## Workflow Status
+
+Each workflow displays one of three status states in the Workflows list:
+
+- **Active**: The workflow is enabled and will run on its defined trigger.
+- **Paused**: The workflow is disabled and will not run until you reactivate it. Pause a workflow to make edits without deleting it.
+- **Failing**: The most recent run encountered an error. Open the workflow to view the run log, inspect the failure reason, and re-run or reconfigure as needed.
+
+<Note>
+  If a workflow fails three consecutive times, it is automatically paused and you receive an email notification. Resolve the underlying issue and click **Reactivate** to resume the schedule.
+</Note>
+
+<Tip>
+  Chain a Trend Detection step followed by a Natural Language Summary step to get an auto-generated weekly business digest delivered straight to your inbox — no manual review required.
+</Tip>
