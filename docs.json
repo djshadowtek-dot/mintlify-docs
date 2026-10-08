@@ -57,7 +57,13 @@
               "diagrams/layout-structures-map"
             ]
           },
-          "api/analysis"
+          "api/analysis",
+          {
+            "group": "Login",
+            "pages": [
+              "untitled-page"
+            ]
+          }
         ]
       },
       {
